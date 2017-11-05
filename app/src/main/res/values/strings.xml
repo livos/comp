@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Companion plants</string>
+
+    <string name="database_file_name">plants.db</string>
+</resources>

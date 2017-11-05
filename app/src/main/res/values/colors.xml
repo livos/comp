@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#8bc34a</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorPlantNameText">#FFFFFF</color>
+
+    <color name="colorGood">#8bc34a</color>
+    <color name="colorBad">#f44336</color>
+    <color name="colorNeutral">#bdbdbd</color>
+    <color name="colorDebate">#ffa726</color>
+    <color name="colorNoPlantCircle">#d9d9d9</color>
+</resources>
