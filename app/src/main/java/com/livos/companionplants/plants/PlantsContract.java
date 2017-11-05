@@ -18,7 +18,6 @@ public interface PlantsContract {
     interface View {
         void updateData(List<PlantDetail> plantsAssociations, PlantSelectedEvent event);
         void updatePlantsList(List<PlantDetail> plantsDefinitions);
-        void updateSearchedPlant(String plantName, Drawable image);
         void updatePlantsGrid(List<PlantDetail> plants);
     }
 

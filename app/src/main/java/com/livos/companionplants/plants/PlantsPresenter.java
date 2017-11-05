@@ -22,7 +22,7 @@ public class PlantsPresenter implements PlantsContract.Presenter {
     private PlantsContract.View view;
     private PlantsContract.Model plantsModel;
     private PlantSelectedEvent plantSelectedEvent;
-    Long plantSelectedId;
+    private Long plantSelectedId;
 
     @Inject
     Context context;
@@ -40,9 +40,6 @@ public class PlantsPresenter implements PlantsContract.Presenter {
         if(!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-//        plantSelectedId = plantsModel.getDefaultPlant();
-//        updateView(plantSelectedId);
-
     }
 
     @Override
@@ -60,13 +57,18 @@ public class PlantsPresenter implements PlantsContract.Presenter {
     public void onEvent(PlantSelectedEvent plantSelectedEvent) {
         plantSelectedId = plantSelectedEvent.getPlantId();
         updateView(plantSelectedId);
-        view.updateSearchedPlant(plantSelectedEvent.getPlantName(),plantSelectedEvent.getImage());
+    }
 
+    @Override
+    public void onRestoreInstanceState (Bundle savedInstanceState) {
+        plantSelectedId = savedInstanceState.getLong("plantSelectedId");
+        updateView(plantSelectedId);
     }
 
     // Load data in view
     private void updateView(Long plantId) {
         List<PlantDetail> plantAssociations = plantsModel.getAssociatedPlants(plantId);
+        //view.updateSearchedPlant(plantSelectedEvent.getPlantName(),plantSelectedEvent.getImage());
         view.updateData(plantAssociations, plantSelectedEvent);
     }
 
@@ -80,17 +82,9 @@ public class PlantsPresenter implements PlantsContract.Presenter {
 
     @Override
     public void loadData() {
-        //List<PlantDefinition> plantsDefinitions = plantsModel.getAllPlantsDefinitions();
         List<PlantDetail> plants = plantsModel.getAllPlants();
         view.updatePlantsList(plants);
         view.updatePlantsGrid(plants);
-    }
-
-    @Override
-    public void onRestoreInstanceState (Bundle savedInstanceState) {
-            plantSelectedId = savedInstanceState.getLong("plantSelectedId");
-
-            updateView(plantSelectedId);
     }
 
     // Fired when a plant is clicked in the autocompletetextview

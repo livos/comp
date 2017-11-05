@@ -107,17 +107,19 @@ public class PlantsFragment extends Fragment implements PlantsContract.View {
 
     @Override
     public void updateData(List<PlantDetail> associatedPlants, PlantSelectedEvent plantSelectedEvent) {
+        // Update grid data
         gridLayoutManager = new GridLayoutManager(getContext(), 4);
-
         plantSelectedId = plantSelectedEvent.getPlantId();
-
-
-        grvPlants.setHasFixedSize(true);
         grvPlants.setLayoutManager(gridLayoutManager);
-
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(),associatedPlants, plantSelectedEvent);
         grvPlants.setAdapter(recyclerViewAdapter);
 
+        // Update search part
+        String plantName = plantSelectedEvent.getPlantName();
+        actvSearch.setText(plantName);
+        civPlant.setImageDrawable(plantSelectedEvent.getImage());
+        actvSearch.setSelection(plantName.length()); // Put the cursor at the end of the name of the new searched plant
+        actvSearch.dismissDropDown();
     }
 
     @Override
@@ -150,14 +152,7 @@ public class PlantsFragment extends Fragment implements PlantsContract.View {
 
     }
 
-    @Override
-    public void updateSearchedPlant(String plantName, Drawable image) {
 
-        actvSearch.setText(plantName);
-        civPlant.setImageDrawable(image);
-        actvSearch.setSelection(plantName.length()); // Put the cursor at the end of the name of the new searched plant
-        actvSearch.dismissDropDown();
-    }
 
     public interface OnPlantSelectedListener {
         void onPlantSelected(Long plantId);
