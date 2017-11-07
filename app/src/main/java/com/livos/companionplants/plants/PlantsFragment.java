@@ -61,6 +61,10 @@ public class PlantsFragment extends Fragment implements PlantsContract.View {
         // Increase recyclerview performance
         grvPlants.setHasFixedSize(true);
 
+        gridLayoutManager = new GridLayoutManager(getContext(), 4);
+        grvPlants.setLayoutManager(gridLayoutManager);
+
+
         // Item clicked in the AutocompleteTextView list
         actvSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -105,12 +109,16 @@ public class PlantsFragment extends Fragment implements PlantsContract.View {
         presenter.dropView();
     }
 
+    private void loadGrid() {
+
+    }
+
     @Override
     public void updateData(List<PlantDetail> associatedPlants, PlantSelectedEvent plantSelectedEvent) {
         // Update grid data
-        gridLayoutManager = new GridLayoutManager(getContext(), 4);
+
         plantSelectedId = plantSelectedEvent.getPlantId();
-        grvPlants.setLayoutManager(gridLayoutManager);
+
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(),associatedPlants, plantSelectedEvent);
         grvPlants.setAdapter(recyclerViewAdapter);
 
