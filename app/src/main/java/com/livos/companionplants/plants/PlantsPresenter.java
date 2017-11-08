@@ -4,10 +4,9 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 
-import com.livos.companionplants.data.local.database.PlantAssociation;
-import com.livos.companionplants.data.local.database.model.PlantDefinition;
 import com.livos.companionplants.events.PlantSelectedEvent;
 import com.livos.companionplants.model.PlantDetail;
+import com.livos.companionplants.model.PlantDetailImpl;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -89,7 +88,7 @@ public class PlantsPresenter implements PlantsContract.Presenter {
 
     // Fired when a plant is clicked in the autocompletetextview
     @Override
-    public void onListItemClicked(PlantDetail plant, Context context) {
+    public void onListItemClicked(PlantDetailImpl plant, Context context) {
         plantSelectedEvent.setPlantId(plant.getPlantId());
         plantSelectedEvent.setPlantName(plant.getDefinition());
 

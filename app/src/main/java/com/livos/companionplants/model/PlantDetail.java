@@ -1,53 +1,23 @@
 package com.livos.companionplants.model;
 
 
-public class PlantDetail {
-    private Long plantId;
-    private String definition;
-    private String picture;
-    private int flag;
-
-    public PlantDetail(Long plantId, String definition, String picture, int flag) {
-        this.plantId = plantId;
-        this.definition = definition;
-        this.picture = picture;
-        this.flag = flag;
-    }
-
+public interface PlantDetail {
     @Override
-    public String toString() {
-        return this.definition;
-    }
+    String toString();
 
-    public Long getPlantId() {
-        return plantId;
-    }
+    Long getPlantId();
 
-    public void setPlantId(Long plantId) {
-        this.plantId = plantId;
-    }
+    void setPlantId(Long plantId);
 
-    public String getDefinition() {
-        return definition;
-    }
+    String getDefinition();
 
-    public void setDefinition(String definition) {
-        this.definition = definition;
-    }
+    void setDefinition(String definition);
 
-    public String getPicture() {
-        return picture;
-    }
+    String getPicture();
 
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
+    void setPicture(String picture);
 
-    public int getFlag() {
-        return flag;
-    }
+    int getFlag();
 
-    public void setFlag(int flag) {
-        this.flag = flag;
-    }
+    void setFlag(int flag);
 }

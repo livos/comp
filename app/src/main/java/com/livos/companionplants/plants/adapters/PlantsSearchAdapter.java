@@ -12,8 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.livos.companionplants.R;
-import com.livos.companionplants.data.local.database.model.PlantDefinition;
 import com.livos.companionplants.model.PlantDetail;
+import com.livos.companionplants.model.PlantDetailImpl;
 
 import java.util.List;
 

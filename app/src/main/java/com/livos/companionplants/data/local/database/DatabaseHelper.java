@@ -1,9 +1,9 @@
 package com.livos.companionplants.data.local.database;
 
 
-import com.livos.companionplants.data.local.database.model.Picture;
 import com.livos.companionplants.data.local.database.model.PlantDefinition;
 import com.livos.companionplants.model.PlantDetail;
+import com.livos.companionplants.model.PlantDetailImpl;
 
 import java.util.List;
 

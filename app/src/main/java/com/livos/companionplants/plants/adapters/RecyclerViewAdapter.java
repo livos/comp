@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.livos.companionplants.R;
 import com.livos.companionplants.events.PlantSelectedEvent;
 import com.livos.companionplants.model.PlantDetail;
+import com.livos.companionplants.model.PlantDetailImpl;
 
 import java.util.List;
 

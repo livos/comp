@@ -3,11 +3,10 @@ package com.livos.companionplants.data.local.database;
 import android.database.Cursor;
 
 import com.livos.companionplants.data.local.database.model.DaoSession;
-import com.livos.companionplants.data.local.database.model.Picture;
-import com.livos.companionplants.data.local.database.model.Plant;
 import com.livos.companionplants.data.local.database.model.PlantDao;
 import com.livos.companionplants.data.local.database.model.PlantDefinition;
 import com.livos.companionplants.model.PlantDetail;
+import com.livos.companionplants.model.PlantDetailImpl;
 import com.livos.companionplants.util.ApplicationScope;
 
 import org.greenrobot.greendao.database.Database;
@@ -55,7 +54,7 @@ public class AppDatabaseHelper implements DatabaseHelper {
                                                             "on p.picture_id = pi._id\n",null);
 
         while (cursor.moveToNext()) {
-            plants.add(new PlantDetail(cursor.getLong(0), cursor.getString(1), cursor.getString(2), 0));
+            plants.add(new PlantDetailImpl(cursor.getLong(0), cursor.getString(1), cursor.getString(2), 0));
         }
 
         cursor.close();
@@ -85,7 +84,7 @@ public class AppDatabaseHelper implements DatabaseHelper {
                         "order by fd._id",plantId),null);
 
         while (cursor.moveToNext()) {
-            associatedPlants.add(new PlantDetail(cursor.getLong(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3)));
+            associatedPlants.add(new PlantDetailImpl(cursor.getLong(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3)));
         }
 
         cursor.close();

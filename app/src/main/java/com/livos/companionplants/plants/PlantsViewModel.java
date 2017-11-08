@@ -1,22 +1,22 @@
 package com.livos.companionplants.plants;
 
 
-import com.livos.companionplants.model.PlantDetail;
+import com.livos.companionplants.model.PlantDetailImpl;
 
 import java.util.List;
 
 public class PlantsViewModel {
-    private List<PlantDetail> plants;
+    private List<PlantDetailImpl> plants;
 
-    public List<PlantDetail> getPlants() {
+    public List<PlantDetailImpl> getPlants() {
         return plants;
     }
 
-    public void setPlants(List<PlantDetail> plants) {
+    public void setPlants(List<PlantDetailImpl> plants) {
         this.plants = plants;
     }
 
-    public void addPlant(PlantDetail plantInfo) {
+    public void addPlant(PlantDetailImpl plantInfo) {
         this.plants.add(plantInfo);
     }
 }

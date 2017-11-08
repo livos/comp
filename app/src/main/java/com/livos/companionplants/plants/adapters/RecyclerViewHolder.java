@@ -7,12 +7,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.livos.companionplants.R;
-import com.livos.companionplants.data.local.database.PlantAssociation;
 import com.livos.companionplants.events.PlantSelectedEvent;
 import com.livos.companionplants.model.PlantDetail;
+import com.livos.companionplants.model.PlantDetailImpl;
 
 import org.greenrobot.eventbus.EventBus;
-import org.w3c.dom.Text;
 
 public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -24,8 +23,8 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.
     @Override
     public void onClick(View view) {
         // The img tag contains the id of the associated plant
-        plantSelectedEvent.setPlantId(((PlantDetail)ivPlant.getTag()).getPlantId());
-        plantSelectedEvent.setPlantName(((PlantDetail)ivPlant.getTag()).getDefinition());
+        plantSelectedEvent.setPlantId(((PlantDetailImpl)ivPlant.getTag()).getPlantId());
+        plantSelectedEvent.setPlantName(((PlantDetailImpl)ivPlant.getTag()).getDefinition());
         plantSelectedEvent.setImage(ivPlant.getDrawable());
 
         EventBus.getDefault().post(plantSelectedEvent);

@@ -2,15 +2,13 @@ package com.livos.companionplants.plants;
 
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.livos.companionplants.base.BasePresenter;
-import com.livos.companionplants.data.local.database.PlantAssociation;
-import com.livos.companionplants.data.local.database.model.Picture;
 import com.livos.companionplants.data.local.database.model.PlantDefinition;
 import com.livos.companionplants.events.PlantSelectedEvent;
 import com.livos.companionplants.model.PlantDetail;
+import com.livos.companionplants.model.PlantDetailImpl;
 
 import java.util.List;
 
@@ -28,7 +26,7 @@ public interface PlantsContract {
         void onSaveInstanceState(Bundle outState);
         void onRestoreInstanceState(Bundle savedInstanceState);
         void loadData();
-        void onListItemClicked(PlantDetail plant, Context context);
+        void onListItemClicked(PlantDetailImpl plant, Context context);
     }
 
     interface Model {

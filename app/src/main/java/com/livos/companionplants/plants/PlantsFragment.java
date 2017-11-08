@@ -1,7 +1,6 @@
 package com.livos.companionplants.plants;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,9 +14,9 @@ import android.widget.AutoCompleteTextView;
 
 import com.livos.companionplants.R;
 import com.livos.companionplants.application.PlantsApplication;
-import com.livos.companionplants.data.local.database.model.PlantDefinition;
 import com.livos.companionplants.events.PlantSelectedEvent;
 import com.livos.companionplants.model.PlantDetail;
+import com.livos.companionplants.model.PlantDetailImpl;
 import com.livos.companionplants.plants.adapters.PlantsSearchAdapter;
 import com.livos.companionplants.plants.adapters.RecyclerViewAdapter;
 
@@ -69,7 +68,7 @@ public class PlantsFragment extends Fragment implements PlantsContract.View {
         actvSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                PlantDetail plant = (PlantDetail)adapterView.getAdapter().getItem(i);
+                PlantDetailImpl plant = (PlantDetailImpl)adapterView.getAdapter().getItem(i);
 
                 hideSoftKeyboard(getContext());
 
