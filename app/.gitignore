@@ -1,2 +1,3 @@
 /build
 /databases/plants.db
+/databases/plants.db_upgrade_2-3.sql

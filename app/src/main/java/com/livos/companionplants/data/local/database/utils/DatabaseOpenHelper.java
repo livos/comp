@@ -23,7 +23,7 @@ import java.io.OutputStream;
 @ApplicationScope
 public class DatabaseOpenHelper extends SQLiteAssetHelper {
     //private static final String DATABASE_NAME = "plants.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     public DatabaseOpenHelper(Context context, String databaseFileName) {
         super(context, databaseFileName, null, DATABASE_VERSION);

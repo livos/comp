@@ -58,7 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
             case 5:
                 return context.getResources().getColor(R.color.colorNeutral);
             default:
-                return Color.BLACK;
+                return context.getResources().getColor(R.color.colorNeutral);
         }
     }
 

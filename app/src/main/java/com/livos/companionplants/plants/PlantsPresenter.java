@@ -12,6 +12,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -22,6 +23,7 @@ public class PlantsPresenter implements PlantsContract.Presenter {
     private PlantsContract.Model plantsModel;
     private PlantSelectedEvent plantSelectedEvent;
     private Long plantSelectedId;
+    private String localeCode;
 
     @Inject
     Context context;
@@ -66,7 +68,7 @@ public class PlantsPresenter implements PlantsContract.Presenter {
 
     // Load data in view
     private void updateView(Long plantId) {
-        List<PlantDetail> plantAssociations = plantsModel.getAssociatedPlants(plantId);
+        List<PlantDetail> plantAssociations = plantsModel.getAssociatedPlants(plantId, localeCode);
         //view.updateSearchedPlant(plantSelectedEvent.getPlantName(),plantSelectedEvent.getImage());
         view.updateData(plantAssociations, plantSelectedEvent);
     }
@@ -80,10 +82,11 @@ public class PlantsPresenter implements PlantsContract.Presenter {
     }
 
     @Override
-    public void loadData() {
-        List<PlantDetail> plants = plantsModel.getAllPlants();
+    public void loadData(String localeCode) {
+        this.localeCode = localeCode;
+        List<PlantDetail> plants = plantsModel.getAllPlants(localeCode);
         view.updatePlantsList(plants);
-        view.updatePlantsGrid(plants);
+        view.updatePlantsGrid(plants, plantSelectedEvent);
     }
 
     // Fired when a plant is clicked in the autocompletetextview

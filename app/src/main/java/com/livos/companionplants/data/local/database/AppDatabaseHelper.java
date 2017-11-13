@@ -12,6 +12,7 @@ import com.livos.companionplants.util.ApplicationScope;
 import org.greenrobot.greendao.database.Database;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -40,18 +41,19 @@ public class AppDatabaseHelper implements DatabaseHelper {
     }
 
     @Override
-    public List<PlantDetail> getAllPlants() {
+    public List<PlantDetail> getAllPlants(String localeCode) {
         ArrayList<PlantDetail> plants = new ArrayList<>();
 
 
-        Cursor cursor = db.rawQuery("select p._id,\n" +
+        Cursor cursor = db.rawQuery(String.format("select p._id,\n" +
                                                 "pd.definition,\n" +
                                                 "pi.picture\n" +
                                                 "from plant p\n" +
                                                      "inner join plant_definition  pd\n" +
                                                         "on p._id = pd.plant_id\n" +
                                                         "inner join picture pi\n" +
-                                                            "on p.picture_id = pi._id\n",null);
+                                                            "on p.picture_id = pi._id\n" +
+                                                "where language = '%s'",localeCode),null);
 
         while (cursor.moveToNext()) {
             plants.add(new PlantDetailImpl(cursor.getLong(0), cursor.getString(1), cursor.getString(2), 0));
@@ -62,7 +64,7 @@ public class AppDatabaseHelper implements DatabaseHelper {
     }
 
     @Override
-    public List<PlantDetail> getAssociatedPlants(Long plantId) {
+    public List<PlantDetail> getAssociatedPlants(Long plantId, String localeCode) {
         ArrayList<PlantDetail> associatedPlants = new ArrayList<>();
 
         Cursor cursor = db.rawQuery(String.format("select sa.plant_id_2,\n" +
@@ -80,8 +82,8 @@ public class AppDatabaseHelper implements DatabaseHelper {
                         "                on p2.picture_id = pi2._id\n" +
                         "        inner join flag_definition fd\n" +
                         "            on sa.flag_definition_id = fd._id\n" +
-                        "where p1._id = %s\n" +
-                        "order by fd._id",plantId),null);
+                        "where p1._id = %s and pd2.language = '%s'\n" +
+                        "order by fd._id",plantId, localeCode),null);
 
         while (cursor.moveToNext()) {
             associatedPlants.add(new PlantDetailImpl(cursor.getLong(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3)));

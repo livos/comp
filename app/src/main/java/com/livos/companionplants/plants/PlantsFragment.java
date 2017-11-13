@@ -1,6 +1,7 @@
 package com.livos.companionplants.plants;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.livos.companionplants.plants.adapters.PlantsSearchAdapter;
 import com.livos.companionplants.plants.adapters.RecyclerViewAdapter;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -35,6 +37,7 @@ public class PlantsFragment extends Fragment implements PlantsContract.View {
 
     private GridLayoutManager gridLayoutManager;
     private Long plantSelectedId;
+    private String currentLocaleCode;
 
 
     @Inject
@@ -56,6 +59,9 @@ public class PlantsFragment extends Fragment implements PlantsContract.View {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_plants,container,false);
         ButterKnife.bind(this, view);
+
+        currentLocaleCode = getResources().getConfiguration().locale.getLanguage();
+
 
         // Increase recyclerview performance
         grvPlants.setHasFixedSize(true);
@@ -99,7 +105,8 @@ public class PlantsFragment extends Fragment implements PlantsContract.View {
     public void onResume() {
         super.onResume();
         presenter.takeView(this);
-        presenter.loadData();
+
+        presenter.loadData(currentLocaleCode);
     }
 
     @Override
@@ -154,8 +161,19 @@ public class PlantsFragment extends Fragment implements PlantsContract.View {
     }
 
     @Override
-    public void updatePlantsGrid(List<PlantDetail> plants) {
+    public void updatePlantsGrid(List<PlantDetail> plants, PlantSelectedEvent plantSelectedEvent) {
+        plantSelectedId = plantSelectedEvent.getPlantId();
 
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(),plants, plantSelectedEvent);
+        grvPlants.setAdapter(recyclerViewAdapter);
+
+        String plantName = plantSelectedEvent.getPlantName()==null?getResources().getString(R.string.all):plantSelectedEvent.getPlantName();
+        Drawable plantPicture = plantSelectedEvent.getImage() == null ? getResources().getDrawable(R.drawable.no_plant) : plantSelectedEvent.getImage();
+        actvSearch.setText(plantName);
+        civPlant.setImageDrawable(plantPicture);
+
+        actvSearch.setSelection(plantName.length()); // Put the cursor at the end of the name of the new searched plant
+        actvSearch.dismissDropDown(); // Hide dropdown by default
 
     }
 

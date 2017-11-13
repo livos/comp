@@ -19,7 +19,9 @@ import dagger.Provides;
 
 @Module
 public class PlantsApplicationModule {
+    private static final String DB_FILE_NAME = "plants.db";
     private final Context context;
+
 
     public PlantsApplicationModule(Context context) {
         this.context = context;
@@ -40,7 +42,7 @@ public class PlantsApplicationModule {
     @Provides
     @ApplicationScope
     String provideDatabaseFileName(Context context) {
-        return  context.getResources().getString(R.string.database_file_name);
+        return DB_FILE_NAME;
     }
 
     @Provides

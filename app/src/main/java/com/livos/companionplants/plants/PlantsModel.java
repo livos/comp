@@ -7,6 +7,7 @@ import com.livos.companionplants.model.PlantDetail;
 import com.livos.companionplants.model.PlantDetailImpl;
 
 import java.util.List;
+import java.util.Locale;
 
 public class PlantsModel implements PlantsContract.Model {
     private DatabaseHelper databaseHelper;
@@ -23,13 +24,13 @@ public class PlantsModel implements PlantsContract.Model {
 //    }
 
     @Override
-    public List<PlantDetail> getAssociatedPlants(Long plantId) {
-        return databaseHelper.getAssociatedPlants(plantId);
+    public List<PlantDetail> getAssociatedPlants(Long plantId, String localeCode) {
+        return databaseHelper.getAssociatedPlants(plantId, localeCode);
     }
 
     @Override
-    public List<PlantDetail> getAllPlants() {
-        return databaseHelper.getAllPlants();
+    public List<PlantDetail> getAllPlants(String localeCode) {
+        return databaseHelper.getAllPlants(localeCode);
     }
 //
 //    @Override
