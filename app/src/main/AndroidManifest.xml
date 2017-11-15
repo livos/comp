@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".application.PlantsApplication">
-        <activity android:name=".main.MainActivity">
-                  <!--android:configChanges="orientation|keyboardHidden|screenSize">-->
+        <activity android:name=".main.MainActivity"
+                  android:theme="@style/AppThemeFullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

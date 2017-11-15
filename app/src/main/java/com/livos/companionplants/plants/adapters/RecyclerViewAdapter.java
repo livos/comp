@@ -48,7 +48,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     public int getFlagColor(int flagId) {
         switch (flagId) {
             case 1 :
-                return context.getResources().getColor(R.color.colorGood);
+                return context.getResources().getColor(R.color.green_no_flashy);
             case 2:
                 return context.getResources().getColor(R.color.colorNeutral);
             case 3:

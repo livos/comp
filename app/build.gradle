@@ -36,6 +36,8 @@ dependencies {
     implementation rootProject.ext.libraries.appCompat
     implementation rootProject.ext.libraries.recyclerView
     implementation rootProject.ext.libraries.cardview
+    implementation rootProject.ext.libraries.designSupport
+
 
     // Injection
     implementation rootProject.ext.libraries.dagger2
@@ -47,8 +49,12 @@ dependencies {
     implementation rootProject.ext.libraries.greenDao
     implementation rootProject.ext.libraries.sqliteassethelper
 
+    // font
+    implementation  rootProject.ext.libraries.calligraphy
+
     // Debug
     implementation rootProject.ext.libraries.stetho
+    implementation rootProject.ext.libraries.firebaseCrash
 
     // Events
     implementation rootProject.ext.libraries.eventBus
@@ -63,7 +69,7 @@ dependencies {
     testImplementation rootProject.ext.testLibraries.robolectric
 
 
-    compile 'com.google.firebase:firebase-crash:11.4.2'
+
 
 
 

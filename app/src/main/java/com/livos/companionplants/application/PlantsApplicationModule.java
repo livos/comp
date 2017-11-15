@@ -16,6 +16,7 @@ import com.livos.companionplants.util.ApplicationScope;
 
 import dagger.Module;
 import dagger.Provides;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 @Module
 public class PlantsApplicationModule {
@@ -73,6 +74,15 @@ public class PlantsApplicationModule {
     @ApplicationScope
     DatabaseHelper provideAppDatabaseHelper(DaoSession daoSession) {
         return  new AppDatabaseHelper(daoSession);
+    }
+
+    @Provides
+    @ApplicationScope
+    CalligraphyConfig provideCalligraphyDefaultConfig() {
+        return new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/source-sans-pro/SourceSansPro-Regular.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build();
     }
 
 }
