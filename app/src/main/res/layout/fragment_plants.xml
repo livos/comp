@@ -33,9 +33,6 @@
             android:drawableLeft="@drawable/ic_search"
             android:drawableStart="@drawable/ic_search"
             android:imeOptions="actionSearch"/>
-
-
-
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -43,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
+        android:scrollbarSize="@dimen/scrollbar_thickness"
         android:scrollbarThumbVertical="@drawable/plants_scrollbar"/>
 
 </LinearLayout>
