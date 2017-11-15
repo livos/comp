@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Companion plants</string>
     <string name="all">All plants</string>
+
+    <!--Toolbar menus-->
+    <string name="share">Share</string>
+
+    <!--Drawer-->
+    <string name="open_drawer">Drawer Open</string>
+    <string name="close_drawer">Drawer Close</string>
+
+    <!--Drawer Menus-->
+    <string name="about">About</string>
+
+    <!--rating dialog-->
+    <string name="rate_us">Rate Us</string>
 </resources>

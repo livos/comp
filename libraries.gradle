@@ -33,6 +33,10 @@ ext {
 
     // Debugging
     stethoVersion = "1.4.2"
+    firebaseVersion = "11.6.0"
+
+    // Fonts
+    calligraphyVersion = "2.3.0"
 
     // UI
     circleImageViewVersion = "2.2.0"
@@ -62,6 +66,9 @@ ext {
             eventBus            : "org.greenrobot:eventbus:$eventBusVersion",
             circleImageView     : "de.hdodenhof:circleimageview:$circleImageViewVersion",
             sqliteassethelper   : "com.readystatesoftware.sqliteasset:sqliteassethelper:$sqliteassethelperVersion",
+            firebaseCrash       : "com.google.firebase:firebase-crash:$firebaseVersion",
+            calligraphy         : "uk.co.chrisjenx:calligraphy:$calligraphyVersion",
+
     ]
 
     testLibraries = [
