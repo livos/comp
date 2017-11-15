@@ -11,9 +11,10 @@
 
     <color name="pale_green">#8bc34a</color>
     <color name="light_green">#4cAf50</color>
+    <color name="white_green">#dcedc8</color>
     <color name="pale_yellow_brown">#dcedc8</color>
     <color name="green">#689f38</color>
-    <color name="colorBad">#f44336</color>
+    <color name="colorBad">#d32f2f</color>
     <color name="colorNeutral">#bdbdbd</color>
     <color name="colorDebate">#ffa726</color>
     <color name="colorNoPlantCircle">#d9d9d9</color>
@@ -28,7 +29,7 @@
     <color name="cyan">#b5e3e7</color>
     <color name="red_dark">#F06423</color>
     <color name="red_dark2">#D85A1B</color>
-    <color name="dark_gray">#696969</color>
-    <color name="light_gray">#dbdbdb</color>
+    <color name="dark_gray">#757575</color>
+    <color name="light_gray">#bdbdbd</color>
 
 </resources>

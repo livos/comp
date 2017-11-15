@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/search_edittext_margin_top"
             android:inputType="text"
+            android:theme="@style/Autocomplete"
             android:drawableLeft="@drawable/ic_search"
             android:drawableStart="@drawable/ic_search"
             android:imeOptions="actionSearch"/>
