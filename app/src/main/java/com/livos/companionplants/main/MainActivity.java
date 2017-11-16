@@ -24,6 +24,8 @@ import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 
 import static com.livos.companionplants.util.KeyboardUtil.hideSoftInput;
+import static com.livos.companionplants.util.AppUtils.rateApp;
+import static com.livos.companionplants.util.AppUtils.shareApp;
 
 import javax.inject.Inject;
 
@@ -154,7 +156,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                                 return true;
                             case R.id.nav_item_rate_us:
                                 //presenter.onDrawerRateUsClick();
-                                rateApp();
+                                rateApp(MainActivity.this);
                                 return true;
                             case R.id.nav_item_credits:
                                 showCredits();
@@ -162,7 +164,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                             case R.id.nav_item_feedback:
                                 return true;
                             case R.id.nav_item_share:
-                                shareApp();
+                                shareApp(MainActivity.this);
                                 return true;
                             default:
                                 return false;
@@ -171,53 +173,9 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                 });
     }
 
-    // Share app
-    private void shareApp(){
-        try {
-            Intent i = new Intent(Intent.ACTION_SEND);
-            i.setType("text/plain");
-            i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-            String message = "\nLet me recommend you this application\n\n";
-            String url =  "https://play.google.com/store/apps/details";
-            String sAux = String.format("%s%s?id=%s",message, url, getPackageName());
-            i.putExtra(Intent.EXTRA_TEXT, sAux);
-            startActivity(Intent.createChooser(i, "choose one"));
-        } catch(Exception e) {
-            //e.toString();
-        }
-    }
 
-    // App rating
-    private void rateApp()
-    {
-        try
-        {
-            Intent rateIntent = rateIntentForUrl("market://details");
-            startActivity(rateIntent);
-        }
-        catch (ActivityNotFoundException e)
-        {
-            Intent rateIntent = rateIntentForUrl("https://play.google.com/store/apps/details");
-            startActivity(rateIntent);
-        }
-    }
 
-    private Intent rateIntentForUrl(String url)
-    {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(String.format("%s?id=%s", url, getPackageName())));
-        int flags = Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_MULTIPLE_TASK;
-        if (Build.VERSION.SDK_INT >= 21)
-        {
-            flags |= Intent.FLAG_ACTIVITY_NEW_DOCUMENT;
-        }
-        else
-        {
-            //noinspection deprecation
-            flags |= Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET;
-        }
-        intent.addFlags(flags);
-        return intent;
-    }
+
 
 
 }

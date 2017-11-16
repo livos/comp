@@ -6,7 +6,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-public class KeyboardUtil {
+public final class KeyboardUtil {
 
     public static void hideSoftInput(Activity activity) {
         View view = activity.getCurrentFocus();
