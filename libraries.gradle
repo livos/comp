@@ -41,6 +41,12 @@ ext {
     // UI
     circleImageViewVersion = "2.2.0"
 
+    // Rating
+    appRatingVersion = "2.0.0"
+
+    // About
+    aboutLibrariesVersion = "6.0.0@aar"
+
     libraries = [
             androidSupport      : "com.android.support:support-v4:${androidSupportVersion}",
             appCompat           : "com.android.support:appcompat-v7:${androidSupportVersion}",
@@ -68,7 +74,8 @@ ext {
             sqliteassethelper   : "com.readystatesoftware.sqliteasset:sqliteassethelper:$sqliteassethelperVersion",
             firebaseCrash       : "com.google.firebase:firebase-crash:$firebaseVersion",
             calligraphy         : "uk.co.chrisjenx:calligraphy:$calligraphyVersion",
-
+            appRating           : "com.stepstone.apprating:app-rating:$appRatingVersion",
+            aboutLibraries      : "com.mikepenz:aboutlibraries:$aboutLibrariesVersion",
     ]
 
     testLibraries = [

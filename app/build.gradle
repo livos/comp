@@ -62,17 +62,19 @@ dependencies {
     // UI
     implementation rootProject.ext.libraries.circleImageView
 
+    // Rating
+    implementation rootProject.ext.libraries.appRating
+
+    // About
+    implementation(rootProject.ext.libraries.aboutLibraries) {
+        transitive = true
+    }
+
     // Tests
     testImplementation rootProject.ext.testLibraries.junit
     testImplementation rootProject.ext.testLibraries.mockito
     testImplementation rootProject.ext.testLibraries.harmcrest
     testImplementation rootProject.ext.testLibraries.robolectric
-
-
-
-
-
-
 }
 
 apply plugin: 'com.google.gms.google-services'

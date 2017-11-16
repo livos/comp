@@ -17,18 +17,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.livos.companionplants.R;
 import com.livos.companionplants.application.PlantsApplication;
 import com.livos.companionplants.base.BaseActivity;
 import com.livos.companionplants.plants.PlantsFragment;
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
+import com.mikepenz.aboutlibraries.ui.LibsFragment;
+
 import static com.livos.companionplants.util.KeyboardUtil.hideSoftKeyboard;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements MainContract.View {
 
@@ -65,16 +71,6 @@ public class MainActivity extends BaseActivity implements MainContract.View {
             dlMain.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_share:
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +95,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         }
 
         setUp();
+
+
     }
 
     @Override
@@ -126,7 +124,21 @@ public class MainActivity extends BaseActivity implements MainContract.View {
        setupNavMenu();
        presenter.onNavMenuCreated();
     }
-
+//
+//    @OnClick(R.id.nav_item_credits)
+//    public void showCredits(View view) {
+//        Toast.makeText(this,"fdsfsdf",Toast.LENGTH_LONG);
+////        LibsFragment AboutFragment = new LibsBuilder()
+////                .withLibraries("Butterknife", "Retrofit", "glide", "Calligraphy", "Gson")
+////                .withActivityStyle(Libs.ActivityStyle.DARK)
+////                .withVersionShown(false)
+////                .withLicenseShown(false)
+////                .fragment();
+////
+////        getFragmentManager().beginTransaction()
+////                .replace(R.id.fl_container_plants, AboutFragment)
+////                .commit();
+//    }
 
     @Override
     protected void onStart() {
@@ -140,6 +152,15 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         presenter.dropView();
     }
 
+    // Show external libraries credits
+    private void showCredits() {
+        new LibsBuilder()
+                //provide a style (optional) (LIGHT, DARK, LIGHT_DARK_TOOLBAR)
+                .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
+                //start the activity
+                .start(MainActivity.this);
+    }
+
     void setupNavMenu() {
         View headerLayout = nvMain.getHeaderView(0);
 
@@ -150,10 +171,17 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                         dlMain.closeDrawer(GravityCompat.START);
                         switch (item.getItemId()) {
                             case R.id.nav_item_help:
-                                presenter.onDrawerOptionAboutClick();
+                                //presenter.onDrawerOptionAboutClick();
                                 return true;
                             case R.id.nav_item_rate_us:
-                                presenter.onDrawerRateUsClick();
+                                //presenter.onDrawerRateUsClick();
+                                return true;
+                            case R.id.nav_item_credits:
+                                showCredits();
+                                return true;
+                            case R.id.nav_item_feedback:
+                                return true;
+                            case R.id.nav_item_share:
                                 return true;
                             default:
                                 return false;
