@@ -1,21 +1,16 @@
 <resources>
     <string name="app_name">Companion plants</string>
+
+    <!-- Search -->
     <string name="all">All plants</string>
-
-
-
 
     <!--Drawer-->
     <string name="open_drawer">Drawer Open</string>
     <string name="close_drawer">Drawer Close</string>
-
-    <!--Drawer Menus-->
     <string name="help">Help</string>
     <string name="share">Spread the word</string>
     <string name="rate_us">Rate Us</string>
     <string name="feedback">Feed us back</string>
     <string name="credits">Credits</string>
     <string name="donate">Donate</string>
-
-
 </resources>
