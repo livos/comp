@@ -16,7 +16,6 @@ import com.livos.companionplants.plants.PlantsModule;
 
 import javax.inject.Inject;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class PlantsApplication extends Application {
     private PlantsApplicationComponent component;
@@ -24,9 +23,6 @@ public class PlantsApplication extends Application {
     private MainComponent mainComponent;
 
     private DaoSession daoSession;
-
-    @Inject
-    CalligraphyConfig calligraphyConfig;
 
 
     @Override
@@ -54,8 +50,6 @@ public class PlantsApplication extends Application {
                 initializeStetho();
             }
         }
-
-        CalligraphyConfig.initDefault(calligraphyConfig);
 
     }
 

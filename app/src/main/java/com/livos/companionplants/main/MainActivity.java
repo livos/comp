@@ -124,21 +124,6 @@ public class MainActivity extends BaseActivity implements MainContract.View {
        setupNavMenu();
        presenter.onNavMenuCreated();
     }
-//
-//    @OnClick(R.id.nav_item_credits)
-//    public void showCredits(View view) {
-//        Toast.makeText(this,"fdsfsdf",Toast.LENGTH_LONG);
-////        LibsFragment AboutFragment = new LibsBuilder()
-////                .withLibraries("Butterknife", "Retrofit", "glide", "Calligraphy", "Gson")
-////                .withActivityStyle(Libs.ActivityStyle.DARK)
-////                .withVersionShown(false)
-////                .withLicenseShown(false)
-////                .fragment();
-////
-////        getFragmentManager().beginTransaction()
-////                .replace(R.id.fl_container_plants, AboutFragment)
-////                .commit();
-//    }
 
     @Override
     protected void onStart() {
@@ -162,7 +147,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     }
 
     void setupNavMenu() {
-        View headerLayout = nvMain.getHeaderView(0);
+        //View headerLayout = nvMain.getHeaderView(0);
 
         nvMain.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
