@@ -31,12 +31,12 @@
             android:icon="@drawable/ic_help_black_24px"
             android:title="@string/help" />
     </group>
-    <group android:id="@+id/grp_menu_bottom"
-           android:checkableBehavior="none">
-        <item
-            android:id="@+id/nav_item_donate"
-            android:checked="true"
-            android:icon="@drawable/ic_heart"
-            android:title="@string/donate" />
-    </group>
+    <!--<group android:id="@+id/grp_menu_bottom"-->
+           <!--android:checkableBehavior="none">-->
+        <!--<item-->
+            <!--android:id="@+id/nav_item_donate"-->
+            <!--android:checked="true"-->
+            <!--android:icon="@drawable/ic_heart"-->
+            <!--android:title="@string/donate" />-->
+    <!--</group>-->
 </menu>
