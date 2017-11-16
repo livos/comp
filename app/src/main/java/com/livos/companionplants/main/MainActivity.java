@@ -2,9 +2,6 @@ package com.livos.companionplants.main;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -26,7 +23,7 @@ import com.livos.companionplants.plants.PlantsFragment;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 
-import static com.livos.companionplants.util.KeyboardUtil.hideSoftKeyboard;
+import static com.livos.companionplants.util.KeyboardUtil.hideSoftInput;
 
 import javax.inject.Inject;
 
@@ -108,7 +105,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                hideSoftKeyboard(MainActivity.this);
+                hideSoftInput(MainActivity.this);
             }
 
             @Override
@@ -165,6 +162,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                             case R.id.nav_item_feedback:
                                 return true;
                             case R.id.nav_item_share:
+                                shareApp();
                                 return true;
                             default:
                                 return false;
@@ -173,8 +171,24 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                 });
     }
 
+    // Share app
+    private void shareApp(){
+        try {
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+            String message = "\nLet me recommend you this application\n\n";
+            String url =  "https://play.google.com/store/apps/details";
+            String sAux = String.format("%s%s?id=%s",message, url, getPackageName());
+            i.putExtra(Intent.EXTRA_TEXT, sAux);
+            startActivity(Intent.createChooser(i, "choose one"));
+        } catch(Exception e) {
+            //e.toString();
+        }
+    }
+
     // App rating
-    public void rateApp()
+    private void rateApp()
     {
         try
         {

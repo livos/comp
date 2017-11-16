@@ -19,7 +19,7 @@
 
     <style name="AppThemeFullScreen" parent="AppTheme">
         <item name="colorPrimary">@color/light_green</item>
-        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorPrimaryDark">@color/light_green</item>
         <item name="android:windowBackground">@color/white</item>
     </style>
 
