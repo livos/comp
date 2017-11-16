@@ -149,7 +149,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         dlMain.closeDrawer(GravityCompat.START);
                         switch (item.getItemId()) {
-                            case R.id.nav_item_about:
+                            case R.id.nav_item_help:
                                 presenter.onDrawerOptionAboutClick();
                                 return true;
                             case R.id.nav_item_rate_us:
