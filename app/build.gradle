@@ -62,9 +62,6 @@ dependencies {
     // UI
     implementation rootProject.ext.libraries.circleImageView
 
-    // Rating
-    implementation rootProject.ext.libraries.appRating
-
     // About
     implementation(rootProject.ext.libraries.aboutLibraries) {
         transitive = true
