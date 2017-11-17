@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/grp_menu_top"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_item_rate_us"
+            android:checked="true"
+            android:icon="@drawable/ic_star_black_24px"
+            android:title="@string/rate_us" />
+        <item
+            android:id="@+id/nav_item_share"
+            android:checked="true"
+            android:icon="@drawable/ic_share_black_24px"
+            android:title="@string/share" />
+    </group>
+    <group android:id="@+id/grp_menu_middle"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_item_credits"
+            android:checked="true"
+            android:icon="@drawable/ic_info_24px"
+            android:title="@string/credits" />
+        <!--<item-->
+            <!--android:id="@+id/nav_item_feedback"-->
+            <!--android:checked="true"-->
+            <!--android:icon="@drawable/ic_send_feedback_black_24px"-->
+            <!--android:title="@string/feedback" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_item_help"-->
+            <!--android:checked="true"-->
+            <!--android:icon="@drawable/ic_help_black_24px"-->
+            <!--android:title="@string/help" />-->
+    </group>
+    <!--<group android:id="@+id/grp_menu_bottom"-->
+           <!--android:checkableBehavior="none">-->
+        <!--<item-->
+            <!--android:id="@+id/nav_item_donate"-->
+            <!--android:checked="true"-->
+            <!--android:icon="@drawable/ic_heart"-->
+            <!--android:title="@string/donate" />-->
+    <!--</group>-->
+</menu>

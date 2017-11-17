@@ -1,11 +1,11 @@
 package com.livos.companionplants.plants;
 
 import com.livos.companionplants.application.PlantsApplicationComponent;
-import com.livos.companionplants.util.PlantsScope;
+import com.livos.companionplants.util.PerFragmentScope;
 
 import dagger.Component;
 
-@PlantsScope
+@PerFragmentScope
 @Component(dependencies = PlantsApplicationComponent.class, modules = PlantsModule.class)
 public interface PlantsComponent {
     void inject(PlantsFragment target);

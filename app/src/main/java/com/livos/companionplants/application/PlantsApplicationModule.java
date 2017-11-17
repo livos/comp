@@ -75,4 +75,5 @@ public class PlantsApplicationModule {
         return  new AppDatabaseHelper(daoSession);
     }
 
+
 }

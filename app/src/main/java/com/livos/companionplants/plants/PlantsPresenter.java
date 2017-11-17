@@ -51,7 +51,7 @@ public class PlantsPresenter implements PlantsContract.Presenter {
         }
     }
 
-    // Event fired when a plant has been clicked in SearchFragment AutocompleteTextView or
+    // Event fired when a plant has been clicked in AutocompleteTextView or
     // in the grid
     @Override
     @Subscribe
@@ -68,9 +68,11 @@ public class PlantsPresenter implements PlantsContract.Presenter {
 
     // Load data in view
     private void updateView(Long plantId) {
-        List<PlantDetail> plantAssociations = plantsModel.getAssociatedPlants(plantId, localeCode);
-        //view.updateSearchedPlant(plantSelectedEvent.getPlantName(),plantSelectedEvent.getImage());
-        view.updateData(plantAssociations, plantSelectedEvent);
+        if(plantId != 0) {
+            List<PlantDetail> plantAssociations = plantsModel.getAssociatedPlants(plantId, localeCode);
+            //view.updateSearchedPlant(plantSelectedEvent.getPlantName(),plantSelectedEvent.getImage());
+            view.updateData(plantAssociations, plantSelectedEvent);
+        }
     }
 
 

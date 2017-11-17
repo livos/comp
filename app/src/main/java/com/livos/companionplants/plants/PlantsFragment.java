@@ -30,7 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static com.livos.companionplants.util.KeyboardUtil.hideSoftKeyboard;
+import static com.livos.companionplants.util.KeyboardUtil.hideSoftInput;
 
 public class PlantsFragment extends Fragment implements PlantsContract.View {
     private static final String TAG = PlantsFragment.class.getSimpleName();
@@ -76,7 +76,7 @@ public class PlantsFragment extends Fragment implements PlantsContract.View {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 PlantDetailImpl plant = (PlantDetailImpl)adapterView.getAdapter().getItem(i);
 
-                hideSoftKeyboard(getContext());
+                hideSoftInput(getActivity());
 
                 presenter.onListItemClicked(plant, getContext());
             }

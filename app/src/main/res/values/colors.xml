@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#8bc34a</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/pale_green</color>
+    <color name="colorPrimaryDark">@color/green</color>
+    <color name="colorPrimaryLight">@color/pale_yellow_brown</color>
+    <color name="colorAccent">@color/pale_green</color>
+    <color name="transparent">#00000000</color>
 
     <color name="colorPlantNameText">#FFFFFF</color>
 
-    <color name="colorGood">#8bc34a</color>
-    <color name="colorBad">#f44336</color>
+
+
+    <color name="pale_green">#8bc34a</color>
+    <color name="light_green">#4cAf50</color>
+    <color name="white_green">#dcedc8</color>
+    <color name="pale_yellow_brown">#dcedc8</color>
+    <color name="green">#689f38</color>
+    <color name="colorBad">#d32f2f</color>
     <color name="colorNeutral">#bdbdbd</color>
     <color name="colorDebate">#ffa726</color>
     <color name="colorNoPlantCircle">#d9d9d9</color>
+
+    <color name="black_effective">#2a2a2a</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="cyan_light">#c9ebee</color>
+    <color name="navy_blue_dark">#1C3A4E</color>
+    <color name="navy_blue">#214258</color>
+    <color name="cyan_dark">#70BDC6</color>
+    <color name="cyan">#b5e3e7</color>
+    <color name="red_dark">#F06423</color>
+    <color name="red_dark2">#D85A1B</color>
+    <color name="dark_gray">#757575</color>
+    <color name="light_gray">#bdbdbd</color>
+    <color name="yellow">#fff44f</color>
+    <color name="gray">#7e7e7e</color>
+
 </resources>

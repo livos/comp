@@ -9,8 +9,8 @@ android {
         applicationId "com.livos.companionplants"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.compileSdkVersion
-        versionCode 10
-        versionName "1.9"
+        versionCode 11
+        versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -36,6 +36,8 @@ dependencies {
     implementation rootProject.ext.libraries.appCompat
     implementation rootProject.ext.libraries.recyclerView
     implementation rootProject.ext.libraries.cardview
+    implementation rootProject.ext.libraries.designSupport
+
 
     // Injection
     implementation rootProject.ext.libraries.dagger2
@@ -47,8 +49,12 @@ dependencies {
     implementation rootProject.ext.libraries.greenDao
     implementation rootProject.ext.libraries.sqliteassethelper
 
+    // font
+    implementation  rootProject.ext.libraries.calligraphy
+
     // Debug
     implementation rootProject.ext.libraries.stetho
+    implementation rootProject.ext.libraries.firebaseCrash
 
     // Events
     implementation rootProject.ext.libraries.eventBus
@@ -56,17 +62,16 @@ dependencies {
     // UI
     implementation rootProject.ext.libraries.circleImageView
 
+    // About
+    implementation(rootProject.ext.libraries.aboutLibraries) {
+        transitive = true
+    }
+
     // Tests
     testImplementation rootProject.ext.testLibraries.junit
     testImplementation rootProject.ext.testLibraries.mockito
     testImplementation rootProject.ext.testLibraries.harmcrest
     testImplementation rootProject.ext.testLibraries.robolectric
-
-
-    compile 'com.google.firebase:firebase-crash:11.4.2'
-
-
-
 }
 
 apply plugin: 'com.google.gms.google-services'

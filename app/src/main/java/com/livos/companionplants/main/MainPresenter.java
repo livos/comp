@@ -16,4 +16,21 @@ public class MainPresenter implements MainContract.Presenter {
 
     }
 
+    @Override
+    public void onDrawerOptionAboutClick() {
+
+    }
+
+    @Override
+    public void onDrawerRateUsClick() {
+
+    }
+
+    // get data to load in drawer
+    @Override
+    public void onNavMenuCreated() {
+        //getMvpView().updateAppVersion();
+    }
+
+
 }

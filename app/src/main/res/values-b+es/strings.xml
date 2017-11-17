@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Companion plants</string>
+
+    <!-- Search -->
     <string name="all">Todos las plantas</string>
+
+    <!--Drawer-->
+    <string name="open_drawer">Cajón abierto</string>
+    <string name="close_drawer">Cajón cerrar</string>
+    <string name="help">Ayuda</string>
+    <string name="share">Compartir</string>
+    <string name="rate_us">Califícanos en Playstore</string>
+    <string name="feedback">Mandanos un mensaje</string>
+    <string name="credits">Credits</string>
+    <string name="donate">Donar</string>
 </resources>
