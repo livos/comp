@@ -1,6 +1,6 @@
 package com.livos.companionplants.main;
 
-import com.livos.companionplants.util.MainScope;
+import com.livos.companionplants.util.PerActivityScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -8,7 +8,7 @@ import dagger.Provides;
 @Module
 public class MainModule {
     @Provides
-    @MainScope
+    @PerActivityScope
     public MainContract.Presenter provideMainPresenter() {
         return new MainPresenter();
     }

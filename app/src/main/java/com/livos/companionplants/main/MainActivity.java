@@ -12,13 +12,13 @@ import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import com.livos.companionplants.R;
 import com.livos.companionplants.application.PlantsApplication;
-import com.livos.companionplants.base.BaseActivity;
 import com.livos.companionplants.plants.PlantsFragment;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
@@ -32,7 +32,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity implements MainContract.View {
+public class MainActivity extends AppCompatActivity implements MainContract.View {
 
     @Inject
     MainContract.Presenter presenter;
@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     }
 
     @Override
-    protected void setUp() {
+    public void setUp() {
         setSupportActionBar(toolbar);
         drawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -151,9 +151,9 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         dlMain.closeDrawer(GravityCompat.START);
                         switch (item.getItemId()) {
-                            case R.id.nav_item_help:
-                                //presenter.onDrawerOptionAboutClick();
-                                return true;
+//                            case R.id.nav_item_help:
+//                                //presenter.onDrawerOptionAboutClick();
+//                                return true;
                             case R.id.nav_item_rate_us:
                                 //presenter.onDrawerRateUsClick();
                                 rateApp(MainActivity.this);
@@ -161,8 +161,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                             case R.id.nav_item_credits:
                                 showCredits();
                                 return true;
-                            case R.id.nav_item_feedback:
-                                return true;
+//                            case R.id.nav_item_feedback:
+//                                return true;
                             case R.id.nav_item_share:
                                 shareApp(MainActivity.this);
                                 return true;

@@ -1,10 +1,10 @@
 package com.livos.companionplants.main;
 
-import com.livos.companionplants.util.MainScope;
+import com.livos.companionplants.util.PerActivityScope;
 
 import dagger.Component;
 
-@MainScope
+@PerActivityScope
 @Component(modules = MainModule.class)
 public interface MainComponent {
     void inject(MainActivity target);

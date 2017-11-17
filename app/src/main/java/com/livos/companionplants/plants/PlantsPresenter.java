@@ -51,7 +51,7 @@ public class PlantsPresenter implements PlantsContract.Presenter {
         }
     }
 
-    // Event fired when a plant has been clicked in SearchFragment AutocompleteTextView or
+    // Event fired when a plant has been clicked in AutocompleteTextView or
     // in the grid
     @Override
     @Subscribe

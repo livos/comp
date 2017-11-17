@@ -5,6 +5,7 @@ public interface MainContract {
     interface View {
         void lockDrawer();
         void unlockDrawer();
+        void setUp();
     }
 
     interface Presenter {

@@ -14,8 +14,6 @@ import com.livos.companionplants.plants.DaggerPlantsComponent;
 import com.livos.companionplants.plants.PlantsComponent;
 import com.livos.companionplants.plants.PlantsModule;
 
-import javax.inject.Inject;
-
 
 public class PlantsApplication extends Application {
     private PlantsApplicationComponent component;
