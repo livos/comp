@@ -1,46 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="horizontal">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civ_plant"
-            android:layout_width="@dimen/img_current_width"
-            android:layout_height="@dimen/img_current_height"
-            android:layout_marginTop="@dimen/img_current_margin_top"
-            android:layout_marginLeft="@dimen/img_current_margin_left"
-            android:layout_marginRight="@dimen/img_current_margin_right"
-            android:layout_marginBottom="@dimen/img_current_margin_bottom"
-            android:src="@drawable/no_plant"
-            app:civ_border_color="@color/colorNoPlantCircle"
-            app:civ_border_width="@dimen/civ_no_plant_border_width"
-            android:layout_marginStart="@dimen/img_current_margin_left"
-            android:layout_marginEnd="@dimen/img_current_margin_right"/>
-
-        <AutoCompleteTextView
-            android:id="@+id/actv_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/search_edittext_margin_top"
-            android:inputType="text"
-            android:theme="@style/Autocomplete"
-            android:drawableLeft="@drawable/ic_search"
-            android:drawableStart="@drawable/ic_search"
-            android:imeOptions="actionSearch"/>
-    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_plants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:scrollbarSize="@dimen/scrollbar_thickness"
-        android:scrollbarThumbVertical="@drawable/plants_scrollbar"/>
+        android:scrollbars="vertical"/>
 
-</LinearLayout>
+</FrameLayout>
