@@ -29,6 +29,7 @@ import butterknife.ButterKnife;
 
 public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     public static final String TAG = "PlantsFragment";
+
     private GridLayoutManager gridLayoutManager;
 
     @Inject
@@ -51,7 +52,6 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
         if(!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-
     }
 
     @Override
@@ -66,7 +66,6 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_plants,container,false);
-
         ActivityComponent component = getActivityComponent();
         if (component != null) {
             component.inject(this);
@@ -75,7 +74,6 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
         }
         gridLayoutManager = new GridLayoutManager(getContext(), 4);
         grvPlants.setLayoutManager(gridLayoutManager);
-
 
         return view;
     }
@@ -96,5 +94,11 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     public void loadPlants(List<Plant> plants) {
         PlantsAdapter recyclerViewAdapter = new PlantsAdapter(getContext(),plants);
         grvPlants.setAdapter(recyclerViewAdapter);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.onDetach();
     }
 }

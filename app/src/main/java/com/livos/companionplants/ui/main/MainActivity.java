@@ -22,9 +22,25 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
         getActivityComponent().inject(this);
 
-        showSearchFragment();
-        showPlantsFragment();
+        // Avoid the multiple creations of fragments when changing the device orientation
+        if(savedInstanceState == null) {
+            showSearchFragment();
+            showPlantsFragment();
+        }
     }
+
+//    @Override
+//    public void onFragmentDetached(String tag) {
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        android.support.v4.app.Fragment fragment = fragmentManager.findFragmentByTag(tag);
+//        if (fragment != null) {
+//            fragmentManager
+//                    .beginTransaction()
+//                    .disallowAddToBackStack()
+//                    .remove(fragment)
+//                    .commitNow();
+//        }
+//    }
 
     private void showPlantsFragment() {
         getSupportFragmentManager()
