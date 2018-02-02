@@ -10,6 +10,8 @@ import com.livos.companionplants.data.local.db.AppDbHelper;
 import com.livos.companionplants.data.local.db.DbHelper;
 import com.livos.companionplants.data.local.prefs.AppPreferencesHelper;
 import com.livos.companionplants.data.local.prefs.PreferencesHelper;
+import com.livos.companionplants.data.local.state.AppStateHelper;
+import com.livos.companionplants.data.local.state.StateHelper;
 import com.livos.companionplants.di.qualifier.ApplicationContext;
 
 import javax.inject.Singleton;
@@ -70,6 +72,12 @@ public class ApplicationModule {
     @Singleton
     PreferencesHelper providePreferencesHelper(AppPreferencesHelper appPreferencesHelper) {
         return  appPreferencesHelper;
+    }
+
+    @Provides
+    @Singleton
+    StateHelper provideStateHelper(AppStateHelper appStateHelper) {
+        return appStateHelper;
     }
 
     @Provides

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 
 import com.livos.companionplants.R;
@@ -15,6 +16,8 @@ import com.livos.companionplants.data.local.db.model.PlantDefinition;
 import com.livos.companionplants.di.component.ActivityComponent;
 import com.livos.companionplants.ui.base.BaseFragment;
 import com.livos.companionplants.ui.search.adapters.PlantSearchAdapter;
+import com.livos.companionplants.ui.events.PlantSelectedEvent;
+import com.livos.companionplants.ui.events.PlantSelectedEventImpl;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -49,8 +52,8 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         if(!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
@@ -58,8 +61,8 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onPause() {
+        super.onPause();
         if(EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
@@ -89,13 +92,33 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
 
     @Override
     protected void setUp(View view) {
+
+        // A plant has been clicked in the list
+        actvSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                PlantDefinition plantDefinition = (PlantDefinition)adapterView.getAdapter().getItem(i);
+                presenter.onListPlantClicked(plantDefinition);
+
+
+            }
+        });
+
         presenter.onViewPrepared();
     }
+
 
     @Override
     public void loadDefinitions(List<PlantDefinition> definitions) {
         plantSearchAdapter = new PlantSearchAdapter(getContext(), 0, definitions);
         actvSearch.setAdapter(plantSearchAdapter);
     }
+
+    @Override
+    public void onSelectedPlantChanged() {
+        PlantSelectedEvent plantSelectedEvent = new PlantSelectedEventImpl();
+        EventBus.getDefault().post(plantSelectedEvent);
+    }
+
 
 }

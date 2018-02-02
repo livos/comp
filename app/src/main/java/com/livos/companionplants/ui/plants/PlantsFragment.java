@@ -5,20 +5,21 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.livos.companionplants.R;
 import com.livos.companionplants.data.local.db.model.Plant;
+import com.livos.companionplants.data.local.db.model.PlantDefinition;
 import com.livos.companionplants.di.component.ActivityComponent;
 import com.livos.companionplants.ui.base.BaseFragment;
-import com.livos.companionplants.ui.plants.adapters.PlantsAdapter;
+import com.livos.companionplants.ui.plants.adapters.RecyclerViewAdapter;
+import com.livos.companionplants.ui.events.PlantSelectedEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -79,9 +80,15 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     }
 
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessage(Plant event){
-        Log.d(TAG,event.getScientificName());
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onMessage(Plant event){
+//        Log.d(TAG,event.getScientificName());
+//    }
+
+    @Subscribe
+    public void onPlantSelectedChangeEvent(PlantSelectedEvent plantSelectedEvent) {
+
+        presenter.onSelectedPlantChanged(plantSelectedEvent);
     }
 
 
@@ -92,7 +99,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
 
     @Override
     public void loadPlants(List<Plant> plants) {
-        PlantsAdapter recyclerViewAdapter = new PlantsAdapter(getContext(),plants);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(),plants);
         grvPlants.setAdapter(recyclerViewAdapter);
     }
 

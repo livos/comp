@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface SearchMvpView extends MvpView {
     void loadDefinitions(List<PlantDefinition> definitions);
+    void onSelectedPlantChanged();
 
 }

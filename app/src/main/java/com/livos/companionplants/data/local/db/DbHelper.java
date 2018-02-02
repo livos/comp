@@ -8,8 +8,9 @@ import java.util.List;
 
 public interface DbHelper {
     List<Plant> getAllPlants();
-
     List<PlantDefinition> getAllDefinitions();
+    List<Plant> getAssociatedPlants(long plantId);
+    Plant getPlantById(long plantId);
 
 
 }
