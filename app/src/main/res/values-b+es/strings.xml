@@ -4,6 +4,8 @@
 
     <!-- Search -->
     <string name="all">Todos las plantas</string>
+    <string name="hint_actv_search">Enter plant name</string>
+
 
     <!--Drawer-->
     <string name="open_drawer">Cajón abierto</string>

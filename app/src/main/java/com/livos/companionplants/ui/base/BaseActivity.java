@@ -1,9 +1,12 @@
 package com.livos.companionplants.ui.base;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.livos.companionplants.PlantsApp;
 import com.livos.companionplants.di.component.ActivityComponent;
@@ -48,5 +51,14 @@ public abstract class BaseActivity extends AppCompatActivity
             unbinder.unbind();
         }
         super.onDestroy();
+    }
+
+    public void hideKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

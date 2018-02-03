@@ -66,4 +66,11 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         }
     }
 
+    @Override
+    public void hideKeyboard() {
+        if (activity != null) {
+            activity.hideKeyboard();
+        }
+    }
+
 }

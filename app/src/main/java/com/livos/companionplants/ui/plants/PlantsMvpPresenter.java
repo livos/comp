@@ -1,7 +1,6 @@
 package com.livos.companionplants.ui.plants;
 
 
-import com.livos.companionplants.data.local.db.model.Plant;
 import com.livos.companionplants.ui.base.MvpPresenter;
 import com.livos.companionplants.ui.events.PlantSelectedEvent;
 

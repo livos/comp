@@ -3,6 +3,7 @@
 
     <!-- Search -->
     <string name="all">All plants</string>
+    <string name="hint_actv_search">Enter plant name</string>
 
     <!--Drawer-->
     <string name="open_drawer">Drawer Open</string>

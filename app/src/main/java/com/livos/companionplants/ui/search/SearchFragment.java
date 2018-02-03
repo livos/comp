@@ -1,6 +1,7 @@
 package com.livos.companionplants.ui.search;
 
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -97,6 +98,7 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 PlantDefinition plantDefinition = (PlantDefinition)adapterView.getAdapter().getItem(i);
                 presenter.onListPlantClicked(plantDefinition);
+                hideKeyboard();
 
 
             }
@@ -117,4 +119,25 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
         PlantSelectedEvent plantSelectedEvent = new PlantSelectedEventImpl();
         EventBus.getDefault().post(plantSelectedEvent);
     }
+
+    @Override
+    public void setCurrentPlant(Plant plant) {
+        Resources resources = getContext().getResources();
+        int resourceId = resources.getIdentifier(plant.getPictures().get(0).getPicture(), "drawable",
+                getContext().getPackageName());
+
+        String currentPlantName = plant.getDefinitions().get(0).getDefinition();
+        actvSearch.setText(currentPlantName);
+        civPlant.setImageDrawable( resources.getDrawable(resourceId));
+        actvSearch.setSelection(currentPlantName.length()); // Put the cursor at the end of the name of the new searched plant
+        actvSearch.dismissDropDown();
+    }
+
+    @Subscribe
+    public void onEvent(PlantSelectedEvent plantSelectedEvent) {
+
+        presenter.onSelectedPlantChanged(plantSelectedEvent);
+    }
+
+
 }

@@ -8,11 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import com.livos.companionplants.R;
 import com.livos.companionplants.data.local.db.model.Plant;
-import com.livos.companionplants.data.local.db.model.PlantDefinition;
 import com.livos.companionplants.di.component.ActivityComponent;
 import com.livos.companionplants.ui.base.BaseFragment;
 import com.livos.companionplants.ui.plants.adapters.RecyclerViewAdapter;
@@ -99,6 +97,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
 
     @Override
     public void loadPlants(List<Plant> plants) {
+        hideKeyboard();
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(),plants);
         grvPlants.setAdapter(recyclerViewAdapter);
     }

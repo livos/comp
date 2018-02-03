@@ -6,8 +6,6 @@ import com.livos.companionplants.data.local.db.model.Plant;
 import com.livos.companionplants.ui.base.BasePresenter;
 import com.livos.companionplants.ui.events.PlantSelectedEvent;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;

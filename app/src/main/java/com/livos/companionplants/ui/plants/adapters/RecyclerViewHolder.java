@@ -10,12 +10,8 @@ import com.livos.companionplants.R;
 import com.livos.companionplants.data.local.db.model.Plant;
 import com.livos.companionplants.ui.events.PlantSelectedEvent;
 import com.livos.companionplants.ui.events.PlantSelectedEventImpl;
-import com.livos.companionplants.ui.plants.PlantsMvpPresenter;
-import com.livos.companionplants.ui.plants.PlantsMvpView;
 
 import org.greenrobot.eventbus.EventBus;
-
-import javax.inject.Inject;
 
 public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private TextView tvPlantName;
@@ -34,6 +30,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.
         PlantSelectedEvent plantSelectedEvent = new PlantSelectedEventImpl();
         plantSelectedEvent.setPlant((Plant)ivPlant.getTag());
         EventBus.getDefault().post(plantSelectedEvent);
+
 
     }
 

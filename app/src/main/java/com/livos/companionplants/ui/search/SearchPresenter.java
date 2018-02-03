@@ -5,6 +5,7 @@ import com.livos.companionplants.data.DataManager;
 import com.livos.companionplants.data.local.db.model.Plant;
 import com.livos.companionplants.data.local.db.model.PlantDefinition;
 import com.livos.companionplants.ui.base.BasePresenter;
+import com.livos.companionplants.ui.events.PlantSelectedEvent;
 
 import java.util.List;
 
@@ -29,6 +30,16 @@ public class SearchPresenter <V extends SearchMvpView> extends BasePresenter<V>
         getDataManager().setSelectedPlant(selectedPlant);
         getMvpView().onSelectedPlantChanged();
 
+    }
+
+    public void onSelectedPlantChanged(PlantSelectedEvent plantSelectedEvent) {
+        Plant selectedPlant = plantSelectedEvent.getPlant();
+
+        if(selectedPlant == null) {
+            selectedPlant = getDataManager().getSelectedPlant();
+        }
+
+        getMvpView().setCurrentPlant(selectedPlant);
     }
 
 }
