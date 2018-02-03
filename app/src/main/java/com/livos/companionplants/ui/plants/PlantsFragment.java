@@ -86,7 +86,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
 //    }
 
     @Subscribe
-    public void onPlantSelectedChangeEvent(PlantSelectedEvent plantSelectedEvent) {
+    public void onEvent(PlantSelectedEvent plantSelectedEvent) {
 
         presenter.onSelectedPlantChanged(plantSelectedEvent);
     }

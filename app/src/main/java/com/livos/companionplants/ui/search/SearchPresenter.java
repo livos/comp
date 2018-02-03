@@ -20,8 +20,8 @@ public class SearchPresenter <V extends SearchMvpView> extends BasePresenter<V>
 
     @Override
     public void onViewPrepared() {
-        List<PlantDefinition> definitions = getDataManager().getAllDefinitions();
-        getMvpView().loadDefinitions(definitions);
+        List<PlantDefinition> plantsDefinitions = getDataManager().getAllDefinitions();
+        getMvpView().loadDefinitions(plantsDefinitions);
     }
 
     public void onListPlantClicked(PlantDefinition plantDefinition) {

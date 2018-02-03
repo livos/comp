@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.livos.companionplants.R;
+import com.livos.companionplants.data.local.db.model.Plant;
 import com.livos.companionplants.data.local.db.model.PlantDefinition;
 
 import java.util.List;

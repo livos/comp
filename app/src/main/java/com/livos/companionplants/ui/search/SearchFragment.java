@@ -29,6 +29,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SearchFragment extends BaseFragment implements SearchMvpView {
     public static final String TAG = "SearchFragment";
@@ -41,7 +42,8 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
     @BindView(R.id.actv_search)
     AutoCompleteTextView actvSearch;
 
-
+    @BindView(R.id.civ_plant)
+    CircleImageView civPlant;
 
 
     public static SearchFragment newInstance() {
@@ -57,7 +59,6 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
         if(!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-
     }
 
     @Override
@@ -79,11 +80,8 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
             setUnBinder(ButterKnife.bind(this, view));
             presenter.onAttach(this);
         }
-
         return view;
     }
-
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessage(Plant event){
@@ -119,6 +117,4 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
         PlantSelectedEvent plantSelectedEvent = new PlantSelectedEventImpl();
         EventBus.getDefault().post(plantSelectedEvent);
     }
-
-
 }

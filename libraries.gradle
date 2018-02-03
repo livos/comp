@@ -15,7 +15,7 @@ ext {
     daggerVersion = "2.9"
 
     // Rx
-    rxjava2Version = "2.0.6"
+    rxjava2Version = "2.1.8"
     rxandroidVersion = '2.0.1'
 
     // Events

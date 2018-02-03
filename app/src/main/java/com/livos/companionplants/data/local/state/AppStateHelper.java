@@ -12,7 +12,7 @@ public class AppStateHelper implements StateHelper {
     private Plant selectedPlant;
 
     @Inject
-    public AppStateHelper() {    }
+    public AppStateHelper() {}
 
     @Override
     public void setSelectedPlant(Plant selectedPlant) {
