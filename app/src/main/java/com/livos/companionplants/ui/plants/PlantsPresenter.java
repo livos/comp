@@ -12,6 +12,8 @@ import javax.inject.Inject;
 
 public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
     implements PlantsMvpPresenter<V> {
+    Plant selectedPlant = null;
+
 
     @Inject
     public PlantsPresenter(DataManager dataManager) {
@@ -20,9 +22,37 @@ public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
 
 
     @Override
-    public void onViewPrepared() {
-        List<Plant> plants = getDataManager().getAllPlants();
-        getMvpView().loadPlants(plants);
+    public void onViewPrepared(int tabNumber) {
+        selectedPlant = getDataManager().getSelectedPlant();
+        List<AssociatedPlant> plants = getAssociatedplants(selectedPlant,tabNumber);
+        if(tabNumber == -1) {
+            getMvpView().loadPlants(plants, true);
+        } else {
+            getMvpView().loadPlants(plants);
+        }
+    }
+
+    private List<AssociatedPlant> getAssociatedplants(Plant selectedPlant, int tabNumber) {
+        //List<AssociatedPlant> associatedPlants = getDataManager().getAssociatedPlants(selectedPlant.getId());
+        List<AssociatedPlant> associatedPlants = null;
+        switch (tabNumber) {
+            case -1:
+                associatedPlants =  getDataManager().getAllPlants();
+                break;
+            case 0:
+                associatedPlants = getDataManager().getAssociatedPlantsHelps(selectedPlant.getId());
+                break;
+            case 1:
+                associatedPlants = getDataManager().getAssociatedPlantsHelpedBy(selectedPlant.getId());
+                break;
+            case 2:
+                associatedPlants = getDataManager().getAssociatedPlantsAvoid(selectedPlant.getId());
+                break;
+            case 3:
+                associatedPlants = getDataManager().getAssociatedPlantsNeutral(selectedPlant.getId());
+                break;
+        }
+        return associatedPlants;
     }
 
 //    @Override
@@ -32,18 +62,24 @@ public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
 //    }
 
     public void onSelectedPlantChanged(PlantSelectedEvent plantSelectedEvent) {
-        Plant selectedPlant = plantSelectedEvent.getPlant();
+        getDataManager().setSelectedPlant(plantSelectedEvent.getPlant());
 
-        // If selected plant is null it means that plant has been selected by clicking
-        // on a list item ant not on picture
-        if(selectedPlant == null) {
-            selectedPlant = getDataManager().getSelectedPlant();
-        }
+//        if(plantSelectedEvent != null) {
+//            selectedPlant = plantSelectedEvent.getPlant();
+//        }
+//
+//        // If selected plant is null it means that plant has been selected by clicking
+//        // on a list item ant not on picture
+//        if(selectedPlant == null) {
+//            selectedPlant = getDataManager().getSelectedPlant();
+//        }
 
-        getDataManager().setSelectedPlant(selectedPlant);
 
-        List<Plant> associatedPlants = getDataManager().getAssociatedPlants(selectedPlant.getId());
-        getMvpView().loadPlants(associatedPlants);
+
+//        List<AssociatedPlant> associatedPlants = getAssociatedplants(selectedPlant,-1);
+//
+//
+//        getMvpView().loadPlants(associatedPlants);
 
     }
 

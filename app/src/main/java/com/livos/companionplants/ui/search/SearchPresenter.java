@@ -33,13 +33,13 @@ public class SearchPresenter <V extends SearchMvpView> extends BasePresenter<V>
     }
 
     public void onSelectedPlantChanged(PlantSelectedEvent plantSelectedEvent) {
-        Plant selectedPlant = plantSelectedEvent.getPlant();
+//        Plant selectedPlant = plantSelectedEvent.getPlant();
+//
+//        if(selectedPlant == null) {
+//            selectedPlant = getDataManager().getSelectedPlant();
+//        }
 
-        if(selectedPlant == null) {
-            selectedPlant = getDataManager().getSelectedPlant();
-        }
-
-        getMvpView().setCurrentPlant(selectedPlant);
+        getMvpView().setCurrentPlant(getDataManager().getSelectedPlant());
     }
 
 }

@@ -133,6 +133,7 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
         actvSearch.dismissDropDown();
     }
 
+
     @Subscribe
     public void onEvent(PlantSelectedEvent plantSelectedEvent) {
 

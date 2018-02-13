@@ -61,4 +61,10 @@ public abstract class BaseActivity extends AppCompatActivity
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
+
+    public void setUnBinder(Unbinder unBinder) {
+        this.unbinder = unBinder;
+    }
+
+    protected abstract void setUp();
 }

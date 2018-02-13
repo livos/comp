@@ -45,11 +45,27 @@
                 android:id="@+id/fl_container_search">
             </FrameLayout>
 
+            <!-- Ony show when no plant filter -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/fl_container_plants">
             </FrameLayout>
+
+            <!-- Ony show when filter apllied -->
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tl_plants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="fixed"
+                android:visibility="gone"
+                app:tabGravity="fill" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_plants"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

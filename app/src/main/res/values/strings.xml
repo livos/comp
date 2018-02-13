@@ -26,4 +26,10 @@
     <!--button-->
     <string name="later">Later</string>
     <string name="submit">Submit</string>
+
+    <!--sections-->
+    <string name="title_helps">HELPS</string>
+    <string name="title_helped_by">HELPED BY</string>
+    <string name="title_avoid">AVOID</string>
+    <string name="title_neutral">NEUTRAL</string>
 </resources>

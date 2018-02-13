@@ -10,6 +10,7 @@ import com.livos.companionplants.R;
 import com.livos.companionplants.data.local.db.model.Plant;
 import com.livos.companionplants.ui.events.PlantSelectedEvent;
 import com.livos.companionplants.ui.events.PlantSelectedEventImpl;
+import com.livos.companionplants.ui.plants.AssociatedPlant;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -28,7 +29,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.
     @Override
     public void onClick(View view) {
         PlantSelectedEvent plantSelectedEvent = new PlantSelectedEventImpl();
-        plantSelectedEvent.setPlant((Plant)ivPlant.getTag());
+        plantSelectedEvent.setPlant(((AssociatedPlant)ivPlant.getTag()).getPlant());
         EventBus.getDefault().post(plantSelectedEvent);
 
 

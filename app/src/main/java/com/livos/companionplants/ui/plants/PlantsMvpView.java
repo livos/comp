@@ -7,5 +7,7 @@ import com.livos.companionplants.ui.base.MvpView;
 import java.util.List;
 
 public interface PlantsMvpView extends MvpView {
-    void loadPlants(List<Plant> plants);
+    //void loadPlants(List<Plant> plants);
+    void loadPlants(List<AssociatedPlant> plants);
+    void loadPlants(List<AssociatedPlant> plants, boolean all);
 }

@@ -8,6 +8,7 @@ import com.livos.companionplants.data.local.prefs.PreferencesHelper;
 import com.livos.companionplants.data.local.state.StateHelper;
 import com.livos.companionplants.ui.events.PlantSelectedEvent;
 import com.livos.companionplants.ui.events.PlantSelectedEventImpl;
+import com.livos.companionplants.ui.plants.AssociatedPlant;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public List<Plant> getAllPlants() {
+    public List<AssociatedPlant> getAllPlants() {
         return dbHelper.getAllPlants();
     }
 
@@ -34,13 +35,39 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public List<Plant> getAssociatedPlants(long plantId) {
+    public List<AssociatedPlant> getAssociatedPlants(long plantId) {
         return  dbHelper.getAssociatedPlants(plantId);
     }
 
     @Override
+    public List<AssociatedPlant> getAssociatedPlantsHelps(long plantId) {
+        return dbHelper.getAssociatedPlantsHelps(plantId);
+    }
+
+    @Override
+    public List<AssociatedPlant> getAssociatedPlantsHelpedBy(long plantId) {
+        return dbHelper.getAssociatedPlantsHelpedBy(plantId);
+    }
+
+    @Override
+    public List<AssociatedPlant> getAssociatedPlantsAvoid(long plantId) {
+        return dbHelper.getAssociatedPlantsAvoid(plantId);
+    }
+
+    @Override
+    public List<AssociatedPlant> getAssociatedPlantsNeutral(long plantId) {
+        return dbHelper.getAssociatedPlantsNeutral(plantId);
+    }
+
+
+    @Override
     public Plant getPlantById(long plantId) {
         return  dbHelper.getPlantById(plantId);
+    }
+
+    @Override
+    public Plant getPlantByName(String name) {
+        return dbHelper.getPlantByName(name);
     }
 
 
@@ -48,7 +75,6 @@ public class AppDataManager implements DataManager {
     public void setSelectedPlant(Plant selectedPlant) {
         stateHelper.setSelectedPlant(selectedPlant);
         PlantSelectedEvent listItemEvent = new PlantSelectedEventImpl();
-
     }
 
     @Override
