@@ -7,7 +7,7 @@ import com.livos.companionplants.ui.events.PlantSelectedEvent;
 public interface PlantsMvpPresenter<V extends PlantsMvpView>
     extends MvpPresenter<V> {
 
-    void onViewPrepared(int tabNumber);
-    void onSelectedPlantChanged(PlantSelectedEvent plantSelectedEvent);
+    void onViewPrepared(int tabIndex);
+    void onSelectedPlantChanged(PlantSelectedEvent plantSelectedEvent, int tabIndex);
 
 }

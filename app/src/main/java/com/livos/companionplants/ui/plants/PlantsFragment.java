@@ -31,6 +31,8 @@ import butterknife.ButterKnife;
 public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     public static final String TAG = "PlantsFragment";
     private int tabIndex = -1;
+    private  RecyclerViewAdapter adapter;
+    boolean allPlantsAlreadySelected;
 
     List<AssociatedPlant> plants;
     PlantSelectedEvent plantSelectedEvent;
@@ -41,27 +43,6 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
 
     @BindView(R.id.rv_plants)
     RecyclerView rvPlants;
-
-//    @BindView(R.id.tv_helped_title)
-//    TextView tvHelpedTitle;
-//
-//    @BindView(R.id.rv_plants_helps)
-//    RecyclerView rvPlantsHelps;
-//
-//    @BindView(R.id.tv_helps_title)
-//    TextView tvHelpsTitle;
-//
-//    @BindView(R.id.rv_plants_neutral)
-//    RecyclerView rvPlantsNeutral;
-//
-//    @BindView(R.id.tv_neutral_title)
-//    TextView tvNeutralTitle;
-//
-//    @BindView(R.id.rv_plants_avoid)
-//    RecyclerView rvPlantsAvoid;
-//
-//    @BindView(R.id.tv_avoid_title)
-//    TextView tvAvoidTitle;
 
     @BindView(R.id.rv_plants_all)
     RecyclerView rvPlantsAll;
@@ -80,15 +61,6 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
         //fragment.setArguments(args);
         return fragment;
     }
-
-
-//    public static PlantsFragment newInstance(int tabNumber) {
-//        Bundle args = new Bundle();
-//        args.putInt("tabNumber",tabNumber);
-//        PlantsFragment fragment = new PlantsFragment();
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
@@ -126,25 +98,10 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
 
         readBundle(getArguments());
 
-
-
-
         rvPlants.setLayoutManager(new GridLayoutManager(getContext(), 4));
-//        rvPlantsHelps.setLayoutManager(new GridLayoutManager(getContext(), 4));
-//        rvPlantsNeutral.setLayoutManager(new GridLayoutManager(getContext(), 4));
-//        rvPlantsAvoid.setLayoutManager(new GridLayoutManager(getContext(), 4));
         rvPlantsAll.setLayoutManager(new GridLayoutManager(getContext(), 4));
 
-
-
-//        if(allPlantsSelectionDone) {
-//            RecyclerViewAdapter adapter;
-//            adapter = new RecyclerViewAdapter(getContext(), plants);
-//            rvPlants.setAdapter(adapter);
-//        }
-
-
-        //setUp(view);
+        adapter = new RecyclerViewAdapter(getContext());
 
 
         return view;
@@ -161,7 +118,8 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
         showTabs();
         this.plantSelectedEvent = plantSelectedEvent;
         this.plantSelectedEvent.setTabIdx(tabIndex);
-        presenter.onSelectedPlantChanged(plantSelectedEvent);
+
+        presenter.onSelectedPlantChanged(plantSelectedEvent, tabIndex); // LVS ADDED tabindex not correct !!! to fix
     }
 
     private void showTabs() {
@@ -171,110 +129,38 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
 
     private void showAllPlants() {
         flWelcome.setVisibility(View.VISIBLE);
-        //llSections.setVisibility(View.GONE);
     }
 
 
     @Override
     protected void setUp(View view) {
-        presenter.onViewPrepared(tabIndex); // get data from presenter
-//        tvHelpedTitle.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (rvPlantsHelped.getVisibility() == View.GONE) {
-//                    rvPlantsHelped.setVisibility(View.VISIBLE);
-//                } else {
-//                    rvPlantsHelped.setVisibility(View.GONE);
-//                }
-//            }
-//        });
-//
-//        tvHelpsTitle.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (rvPlantsHelps.getVisibility() == View.GONE) {
-//                    rvPlantsHelps.setVisibility(View.VISIBLE);
-//                } else {
-//                    rvPlantsHelps.setVisibility(View.GONE);
-//                }
-//            }
-//        });
-//
-//        tvNeutralTitle.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (rvPlantsNeutral.getVisibility() == View.GONE) {
-//                    rvPlantsNeutral.setVisibility(View.VISIBLE);
-//                } else {
-//                    rvPlantsNeutral.setVisibility(View.GONE);
-//                }
-//            }
-//        });
-//
-//        tvAvoidTitle.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (rvPlantsAvoid.getVisibility() == View.GONE) {
-//                    rvPlantsAvoid.setVisibility(View.VISIBLE);
-//                } else {
-//                    rvPlantsAvoid.setVisibility(View.GONE);
-//                }
-//            }
-//        });
+        presenter.onViewPrepared(tabIndex);
 
     }
-
-//    @Override
-//    public void loadPlants(List<AssociatedPlant> plants) {
-//        hideKeyboard();
-//        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(),plants);
-//
-//        rvPlantsAll.setAdapter(recyclerViewAdapter);
-//    }
 
     @Override
     public void loadPlants(List<AssociatedPlant> plants, boolean allPlants) {
         hideKeyboard();
 
-        this.plants = plants;
-
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(),plants);
-
-        // If no plants has already been selected
         if(allPlants) {
-            rvPlants.setAdapter(adapter);
-        } else {
-            rvPlantsAll.setAdapter(adapter);
+            allPlantsAlreadySelected = true;
         }
 
 
-
-//        RecyclerViewAdapter adapter;
-//        switch (tabNumber) {
-//            case 0:
-//                adapter = new RecyclerViewAdapter(getContext(),plantsHelps);
-//                break;
-//            case 1:
-//                adapter = new RecyclerViewAdapter(getContext(),plantsHelpedBy);
-//                break;
-//            case 2:
-//                adapter = new RecyclerViewAdapter(getContext(),plantsAvoid);
-//                break;
-//            case 3:
-//                adapter = new RecyclerViewAdapter(getContext(),plantsNeutral);
-//                break;
-//            default:
-//                adapter = new RecyclerViewAdapter(getContext(),plantsNeutral);
-//        }
-//
-//        rvPlants.setAdapter(adapter);
+        this.plants = plants;
 
 
+        adapter.updateAssociatedPlants(plants);
+        adapter.notifyDataSetChanged();
 
-//        rvPlantsHelps.setAdapter(adapterHelps);
-//        rvPlantsHelped.setAdapter(adapterHelpedBy);
-//        rvPlantsAvoid.setAdapter(adapterAvoid);
-//        rvPlantsNeutral.setAdapter(adapterNeutral);
+        // If no plants has already been selected
+        //if(allPlantsAlreadySelected) {
+            rvPlants.setAdapter(adapter);
+        //} else {
+            rvPlantsAll.setAdapter(adapter);
+        //}
+
+
     }
 
     @Override

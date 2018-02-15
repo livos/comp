@@ -20,8 +20,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     private Context context;
     private List<AssociatedPlant> plants;
 
-    public RecyclerViewAdapter(Context context, List<AssociatedPlant> plants) {
+    public RecyclerViewAdapter(Context context) {
         this.context = context;
+    }
+
+
+    public void updateAssociatedPlants(List<AssociatedPlant> plants) {
         this.plants = plants;
     }
 

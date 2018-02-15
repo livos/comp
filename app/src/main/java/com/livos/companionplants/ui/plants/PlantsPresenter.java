@@ -61,9 +61,9 @@ public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
 //        onSelectedPlantChanged();
 //    }
 
-    public void onSelectedPlantChanged(PlantSelectedEvent plantSelectedEvent) {
+    public void onSelectedPlantChanged(PlantSelectedEvent plantSelectedEvent, int tabIndex) {
         getDataManager().setSelectedPlant(plantSelectedEvent.getPlant());
-
+        onViewPrepared(tabIndex);
 
 
 
