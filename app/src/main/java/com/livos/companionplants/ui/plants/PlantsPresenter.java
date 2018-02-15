@@ -22,20 +22,20 @@ public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
 
 
     @Override
-    public void onViewPrepared(int tabNumber) {
+    public void onViewPrepared(int tabIndex) {
         selectedPlant = getDataManager().getSelectedPlant();
-        List<AssociatedPlant> plants = getAssociatedplants(selectedPlant,tabNumber);
-        if(tabNumber == -1) {
-            getMvpView().loadPlants(plants, true);
+        List<AssociatedPlant> plants = getAssociatedplants(selectedPlant,tabIndex);
+        if(tabIndex == -1) {
+            getMvpView().loadPlants(plants, true); // load all plants with no filter
         } else {
-            getMvpView().loadPlants(plants);
+            getMvpView().loadPlants(plants, false); // load plants applying filter
         }
     }
 
-    private List<AssociatedPlant> getAssociatedplants(Plant selectedPlant, int tabNumber) {
+    private List<AssociatedPlant> getAssociatedplants(Plant selectedPlant, int tabIndex) {
         //List<AssociatedPlant> associatedPlants = getDataManager().getAssociatedPlants(selectedPlant.getId());
         List<AssociatedPlant> associatedPlants = null;
-        switch (tabNumber) {
+        switch (tabIndex) {
             case -1:
                 associatedPlants =  getDataManager().getAllPlants();
                 break;
@@ -63,6 +63,9 @@ public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
 
     public void onSelectedPlantChanged(PlantSelectedEvent plantSelectedEvent) {
         getDataManager().setSelectedPlant(plantSelectedEvent.getPlant());
+
+
+
 
 //        if(plantSelectedEvent != null) {
 //            selectedPlant = plantSelectedEvent.getPlant();

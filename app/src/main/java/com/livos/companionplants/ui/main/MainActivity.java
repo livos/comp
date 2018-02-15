@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     private void showPlantsFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .disallowAddToBackStack()
+                //.disallowAddToBackStack()
                 .add(R.id.fl_container_plants, PlantsFragment.newInstance(), PlantsFragment.TAG)
                 .commit();
 
@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     private void showSearchFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .disallowAddToBackStack()
+                //.disallowAddToBackStack()
                 .add(R.id.fl_container_search, SearchFragment.newInstance(), SearchFragment.TAG)
                 .commit();
     }

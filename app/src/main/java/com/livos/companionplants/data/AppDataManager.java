@@ -74,7 +74,6 @@ public class AppDataManager implements DataManager {
     @Override
     public void setSelectedPlant(Plant selectedPlant) {
         stateHelper.setSelectedPlant(selectedPlant);
-        PlantSelectedEvent listItemEvent = new PlantSelectedEventImpl();
     }
 
     @Override

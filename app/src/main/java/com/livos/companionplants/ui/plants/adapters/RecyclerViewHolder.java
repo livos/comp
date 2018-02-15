@@ -36,10 +36,12 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.
     }
 
     public TextView getTvPlantName() {
+
         return tvPlantName;
     }
 
     public ImageView getIvPlant() {
+
         return ivPlant;
     }
 }
