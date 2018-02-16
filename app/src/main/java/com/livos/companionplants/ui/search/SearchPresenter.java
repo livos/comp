@@ -28,7 +28,7 @@ public class SearchPresenter <V extends SearchMvpView> extends BasePresenter<V>
     public void onListPlantClicked(PlantDefinition plantDefinition) {
         Plant selectedPlant = getDataManager().getPlantById(plantDefinition.getId());
         getDataManager().setSelectedPlant(selectedPlant);
-        getMvpView().onSelectedPlantChanged();
+        getMvpView().onSelectedPlantChanged(selectedPlant);
 
     }
 

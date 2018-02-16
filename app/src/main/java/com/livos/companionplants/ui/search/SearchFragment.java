@@ -115,8 +115,9 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
     }
 
     @Override
-    public void onSelectedPlantChanged() {
+    public void onSelectedPlantChanged(Plant selectedPlant) {
         PlantSelectedEvent plantSelectedEvent = new PlantSelectedEventImpl();
+        plantSelectedEvent.setPlant(selectedPlant);
         EventBus.getDefault().post(plantSelectedEvent);
     }
 

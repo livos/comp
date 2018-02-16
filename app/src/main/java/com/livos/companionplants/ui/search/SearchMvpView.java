@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface SearchMvpView extends MvpView {
     void loadDefinitions(List<PlantDefinition> plantsDefinitions);
-    void onSelectedPlantChanged();
+    void onSelectedPlantChanged(Plant selectedPlant);
     void setCurrentPlant(Plant plant);
 
 }
