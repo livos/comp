@@ -44,14 +44,14 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     @BindView(R.id.rv_plants)
     RecyclerView rvPlants;
 
-    @BindView(R.id.rv_plants_all)
-    RecyclerView rvPlantsAll;
+//    @BindView(R.id.rv_plants_all)
+//    RecyclerView rvPlantsAll;
 
     @BindView(R.id.ll_tabs)
     LinearLayout llTabs;
 
-    @BindView(R.id.fl_welcome)
-    FrameLayout flWelcome;
+//    @BindView(R.id.fl_welcome)
+//    FrameLayout flWelcome;
 
 
     public static PlantsFragment newInstance() {
@@ -99,7 +99,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
         readBundle(getArguments());
 
         rvPlants.setLayoutManager(new GridLayoutManager(getContext(), 4));
-        rvPlantsAll.setLayoutManager(new GridLayoutManager(getContext(), 4));
+        //rvPlantsAll.setLayoutManager(new GridLayoutManager(getContext(), 4));
 
         adapter = new RecyclerViewAdapter(getContext());
 
@@ -123,12 +123,12 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     }
 
     private void showTabs() {
-        flWelcome.setVisibility(View.GONE);
+        //flWelcome.setVisibility(View.GONE);
         llTabs.setVisibility(View.VISIBLE);
     }
 
     private void showAllPlants() {
-        flWelcome.setVisibility(View.VISIBLE);
+        //flWelcome.setVisibility(View.VISIBLE);
     }
 
 
@@ -153,11 +153,13 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
         adapter.updateAssociatedPlants(plants);
         adapter.notifyDataSetChanged();
 
+
         // If no plants has already been selected
         //if(allPlantsAlreadySelected) {
-            rvPlants.setAdapter(adapter);
+           rvPlants.setAdapter(adapter);
         //} else {
-            rvPlantsAll.setAdapter(adapter);
+        // todo : if tabindex == -1
+            //rvPlantsAll.setAdapter(adapter);
         //}
 
 
