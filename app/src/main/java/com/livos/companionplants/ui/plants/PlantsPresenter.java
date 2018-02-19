@@ -1,6 +1,8 @@
 package com.livos.companionplants.ui.plants;
 
 
+import android.os.Bundle;
+
 import com.livos.companionplants.data.DataManager;
 import com.livos.companionplants.data.local.db.model.Plant;
 import com.livos.companionplants.ui.base.BasePresenter;
@@ -13,6 +15,7 @@ import javax.inject.Inject;
 public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
     implements PlantsMvpPresenter<V> {
     Plant selectedPlant = null;
+    int tabIndex = -1;
 
 
     @Inject
@@ -23,13 +26,10 @@ public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
 
     @Override
     public void onViewPrepared(int tabIndex) {
+        this.tabIndex = tabIndex;
         selectedPlant = getDataManager().getSelectedPlant();
         List<AssociatedPlant> plants = getAssociatedplants(selectedPlant,tabIndex);
-        if(tabIndex == -1) {
-            getMvpView().loadPlants(plants, true); // load all plants with no filter
-        } else {
-            getMvpView().loadPlants(plants, false); // load plants applying filter
-        }
+        getMvpView().loadPlants(plants);
     }
 
     private List<AssociatedPlant> getAssociatedplants(Plant selectedPlant, int tabIndex) {
@@ -39,52 +39,25 @@ public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
             case -1:
                 associatedPlants =  getDataManager().getAllPlants();
                 break;
-            case 0:
-                associatedPlants = getDataManager().getAssociatedPlantsHelps(selectedPlant.getId());
+            case 0: // helps
+                associatedPlants = getDataManager().getAssociatedPlantsByFlag(selectedPlant.getId(),1);
                 break;
-            case 1:
-                associatedPlants = getDataManager().getAssociatedPlantsHelpedBy(selectedPlant.getId());
+            case 1: // helped by
+                associatedPlants = getDataManager().getAssociatedPlantsByFlag(selectedPlant.getId(),2);
                 break;
-            case 2:
-                associatedPlants = getDataManager().getAssociatedPlantsAvoid(selectedPlant.getId());
+            case 2: // avoid
+                associatedPlants = getDataManager().getAssociatedPlantsByFlag(selectedPlant.getId(),5);
                 break;
-            case 3:
-                associatedPlants = getDataManager().getAssociatedPlantsNeutral(selectedPlant.getId());
+            case 3: // neutral
+                associatedPlants = getDataManager().getAssociatedPlantsByFlag(selectedPlant.getId(),6);
                 break;
         }
         return associatedPlants;
     }
 
-//    @Override
-//    public void onCardPlantClicked(Plant plant) {
-//        getDataManager().setSelectedPlant(plant);
-//        onSelectedPlantChanged();
-//    }
-
     public void onSelectedPlantChanged(PlantSelectedEvent plantSelectedEvent, int tabIndex) {
         getDataManager().setSelectedPlant(plantSelectedEvent.getPlant());
+        this.tabIndex = tabIndex;
         onViewPrepared(tabIndex);
-
-
-
-//        if(plantSelectedEvent != null) {
-//            selectedPlant = plantSelectedEvent.getPlant();
-//        }
-//
-//        // If selected plant is null it means that plant has been selected by clicking
-//        // on a list item ant not on picture
-//        if(selectedPlant == null) {
-//            selectedPlant = getDataManager().getSelectedPlant();
-//        }
-
-
-
-//        List<AssociatedPlant> associatedPlants = getAssociatedplants(selectedPlant,-1);
-//
-//
-//        getMvpView().loadPlants(associatedPlants);
-
     }
-
-
 }

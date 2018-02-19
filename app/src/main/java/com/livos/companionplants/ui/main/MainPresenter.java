@@ -1,6 +1,8 @@
 package com.livos.companionplants.ui.main;
 
 
+import android.os.Bundle;
+
 import com.livos.companionplants.data.DataManager;
 import com.livos.companionplants.data.local.db.model.Plant;
 import com.livos.companionplants.ui.base.BasePresenter;
@@ -14,8 +16,7 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> implements MainMvpPresenter<V> {
 
-
-        @Inject
+    @Inject
     public MainPresenter(DataManager dataManager) {
         super(dataManager);
     }
@@ -28,14 +29,5 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
         getDataManager().setSelectedPlant(null);
     }
 
-    public void onSelectedPlantChanged(PlantSelectedEvent plantSelectedEvent) {
-//        Plant selectedPlant = plantSelectedEvent.getPlant();
-//
-//        if(selectedPlant != null) {
-//            getDataManager().setSelectedPlant(selectedPlant);
-//        }
-
-        //getMvpView().hideAllPlantsView();
-    }
 
 }

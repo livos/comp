@@ -33,5 +33,7 @@
         android:drawableLeft="@drawable/ic_search"
         android:drawableStart="@drawable/ic_search"
         android:imeOptions="actionSearch"/>
+        <!--android:freezesText="true" -->
+
 
 </LinearLayout>

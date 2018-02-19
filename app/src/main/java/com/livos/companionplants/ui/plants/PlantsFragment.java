@@ -31,12 +31,11 @@ import butterknife.ButterKnife;
 public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     public static final String TAG = "PlantsFragment";
     private int tabIndex = -1;
-    private  RecyclerViewAdapter adapter;
-    boolean allPlantsAlreadySelected;
+    private long selectedPlantId;
+    private RecyclerViewAdapter adapter;
 
     List<AssociatedPlant> plants;
     PlantSelectedEvent plantSelectedEvent;
-    private boolean allPlantsSelectionDone = false;
 
     @Inject
     PlantsMvpPresenter<PlantsMvpView> presenter;
@@ -44,27 +43,19 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     @BindView(R.id.rv_plants)
     RecyclerView rvPlants;
 
-//    @BindView(R.id.rv_plants_all)
-//    RecyclerView rvPlantsAll;
-
     @BindView(R.id.ll_tabs)
     LinearLayout llTabs;
 
-//    @BindView(R.id.fl_welcome)
-//    FrameLayout flWelcome;
-
 
     public static PlantsFragment newInstance() {
-//        Bundle args = new Bundle();
-//        args.putInt("tabNumber",-1); // Tabnumber set to -1 by default (no filter selected so no tabs in the view)
         PlantsFragment fragment = new PlantsFragment();
-        //fragment.setArguments(args);
         return fragment;
     }
 
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
-            tabIndex = bundle.getInt("tabIndex");
+            this.tabIndex = bundle.getInt("tabIndex");
+            this.selectedPlantId = bundle.getLong("plantSelectedId");
         }
     }
 
@@ -72,7 +63,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     @Override
     public void onStart() {
         super.onStart();
-        if(!EventBus.getDefault().isRegistered(this)) {
+        if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
     }
@@ -80,7 +71,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     @Override
     public void onStop() {
         super.onStop();
-        if(EventBus.getDefault().isRegistered(this)) {
+        if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
     }
@@ -88,7 +79,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_plants,container,false);
+        View view = inflater.inflate(R.layout.fragment_plants, container, false);
         ActivityComponent component = getActivityComponent();
         if (component != null) {
             component.inject(this);
@@ -99,36 +90,18 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
         readBundle(getArguments());
 
         rvPlants.setLayoutManager(new GridLayoutManager(getContext(), 4));
-        //rvPlantsAll.setLayoutManager(new GridLayoutManager(getContext(), 4));
 
         adapter = new RecyclerViewAdapter(getContext());
-
 
         return view;
     }
 
-
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void onMessage(Plant event){
-//        Log.d(TAG,event.getScientificName());
-//    }
-
     @Subscribe
-    public void onEvent(PlantSelectedEvent plantSelectedEvent) {
-        showTabs();
+    public void onEPlantSelectedEvent(PlantSelectedEvent plantSelectedEvent) {
         this.plantSelectedEvent = plantSelectedEvent;
         this.plantSelectedEvent.setTabIdx(tabIndex);
 
-        presenter.onSelectedPlantChanged(plantSelectedEvent, tabIndex); // LVS ADDED tabindex not correct !!! to fix
-    }
-
-    private void showTabs() {
-        //flWelcome.setVisibility(View.GONE);
-        llTabs.setVisibility(View.VISIBLE);
-    }
-
-    private void showAllPlants() {
-        //flWelcome.setVisibility(View.VISIBLE);
+        presenter.onSelectedPlantChanged(plantSelectedEvent, tabIndex);
     }
 
 
@@ -139,30 +112,15 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     }
 
     @Override
-    public void loadPlants(List<AssociatedPlant> plants, boolean allPlants) {
+    public void loadPlants(List<AssociatedPlant> plants) {
         hideKeyboard();
 
-        if(allPlants) {
-            allPlantsAlreadySelected = true;
-        }
-
-
         this.plants = plants;
-
 
         adapter.updateAssociatedPlants(plants);
         adapter.notifyDataSetChanged();
 
-
-        // If no plants has already been selected
-        //if(allPlantsAlreadySelected) {
-           rvPlants.setAdapter(adapter);
-        //} else {
-        // todo : if tabindex == -1
-            //rvPlantsAll.setAdapter(adapter);
-        //}
-
-
+        rvPlants.setAdapter(adapter);
     }
 
     @Override

@@ -16,6 +16,7 @@ public interface DbHelper {
     List<AssociatedPlant> getAssociatedPlantsHelpedBy(long plantId);
     List<AssociatedPlant> getAssociatedPlantsAvoid(long plantId);
     List<AssociatedPlant> getAssociatedPlantsNeutral(long plantId);
+    List<AssociatedPlant> getAssociatedPlantsByFlag(long plantId, long flagId);
 
     Plant getPlantById(long plantId);
     Plant getPlantByName(String name);

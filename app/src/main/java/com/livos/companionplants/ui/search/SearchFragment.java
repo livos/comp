@@ -136,10 +136,23 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
 
 
     @Subscribe
-    public void onEvent(PlantSelectedEvent plantSelectedEvent) {
+    public void onPlantSelectedEvent(PlantSelectedEvent plantSelectedEvent) {
 
         presenter.onSelectedPlantChanged(plantSelectedEvent);
     }
 
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(outState != null) {
+            presenter.onSaveInstanceState(outState);
+        }
+    }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(savedInstanceState != null) {
+            presenter.onRestoreInstanceState(savedInstanceState);
+        }
+    }
 }

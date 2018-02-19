@@ -119,6 +119,22 @@ public class AppDbHelper implements DbHelper {
     }
 
     @Override
+    public List<AssociatedPlant> getAssociatedPlantsByFlag(long plantId, long flagId) {
+        List<AssociatedPlant> associatedPlants = new ArrayList<>();
+
+        RealmResults<SpaceAssociation> associations = realm
+                .where(SpaceAssociation.class)
+                .equalTo("plant1.id",plantId)
+                .and()
+                .equalTo("flag.id", flagId).findAll();
+
+        for(SpaceAssociation sa : associations) {
+            associatedPlants.add(new AssociatedPlant(sa.getPlant2(),sa.getFlag()));
+        }
+        return  associatedPlants;
+    }
+
+    @Override
     public Plant getPlantById(long plantId) {
         Plant plant = realm.where(Plant.class).equalTo("id",plantId).findFirst();
         return  plant;

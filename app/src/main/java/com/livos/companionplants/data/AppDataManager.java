@@ -40,6 +40,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public List<AssociatedPlant> getAssociatedPlantsByFlag(long plantId, long flagId) {
+        return dbHelper.getAssociatedPlantsByFlag(plantId, flagId);
+    }
+
+    @Override
     public List<AssociatedPlant> getAssociatedPlantsHelps(long plantId) {
         return dbHelper.getAssociatedPlantsHelps(plantId);
     }

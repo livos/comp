@@ -3,6 +3,7 @@ package com.livos.companionplants.ui.main;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -29,6 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
+    private int selectedTab;
 
     @Inject
     MainMvpPresenter<MainMvpView> presenter;
@@ -53,9 +55,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
         setUp();
 
-
-
-
         // Avoid the multiple creations of fragments when changing the device orientation
         if(savedInstanceState == null) {
             showSearchFragment();
@@ -69,20 +68,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         vpPlants.setAdapter(plantsPagerAdapter);
 
         tlPlants.setupWithViewPager(vpPlants);
-    }
 
-//    @Override
-//    public void onFragmentDetached(String tag) {
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        android.support.v4.app.Fragment fragment = fragmentManager.findFragmentByTag(tag);
-//        if (fragment != null) {
-//            fragmentManager
-//                    .beginTransaction()
-//                    .disallowAddToBackStack()
-//                    .remove(fragment)
-//                    .commitNow();
-//        }
-//    }
+    }
 
     private void showPlantsFragment() {
         getSupportFragmentManager()
@@ -101,20 +88,26 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                 .commit();
     }
 
-    @Subscribe
-    public void onEvent(PlantSelectedEvent plantSelectedEvent) {
-
-        presenter.onSelectedPlantChanged(plantSelectedEvent);
-        tlPlants.setVisibility(View.VISIBLE);
-        vpPlants.setVisibility(View.VISIBLE);
-        flContainerPlants.setVisibility(View.GONE);
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        toggleTabs(View.VISIBLE);
     }
 
+    @Subscribe
+    public void onSelectedPlantEvent(PlantSelectedEvent plantSelectedEvent) {
+        toggleTabs(View.VISIBLE);
+    }
 
-//    @Override
-//    public void hideAllPlantsView() {
-//        flContainerPlants.setVisibility(View.GONE);
-//    }
+    private void toggleTabs(int visibility) {
+        tlPlants.setVisibility(visibility); // Show TableLayout
+        vpPlants.setVisibility(visibility); // Show ViewPager
+        if (visibility == View.VISIBLE) {
+            flContainerPlants.setVisibility(View.GONE); // Hide FrameLayout with all plants (not tab and no filter applied => welcome screen)
+        } else {
+            flContainerPlants.setVisibility(View.VISIBLE);
+        }
+    }
 
     @Override
     public void onStart() {
@@ -131,4 +124,5 @@ public class MainActivity extends BaseActivity implements MainMvpView {
             EventBus.getDefault().unregister(this);
         }
     }
+
 }
