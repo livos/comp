@@ -4,6 +4,7 @@
 
     <!-- Search -->
     <string name="all">Toutes les plantes</string>
+    <string name="hint_actv_search">Nom de la plante</string>
 
     <!--Drawer-->
     <string name="open_drawer">Menu ouvert</string>
