@@ -8,9 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.livos.companionplants.R;
 import com.livos.companionplants.di.component.ActivityComponent;
@@ -76,6 +74,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
         }
     }
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -97,7 +96,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     }
 
     @Subscribe
-    public void onEPlantSelectedEvent(PlantSelectedEvent plantSelectedEvent) {
+    public void onPlantSelectedEvent(PlantSelectedEvent plantSelectedEvent) {
         this.plantSelectedEvent = plantSelectedEvent;
         this.plantSelectedEvent.setTabIdx(tabIndex);
 
@@ -121,6 +120,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
         adapter.notifyDataSetChanged();
 
         rvPlants.setAdapter(adapter);
+
     }
 
     @Override

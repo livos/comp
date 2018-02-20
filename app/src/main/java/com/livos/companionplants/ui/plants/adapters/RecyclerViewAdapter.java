@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 
 import com.livos.companionplants.R;
 import com.livos.companionplants.data.local.db.model.Flag;
-import com.livos.companionplants.data.local.db.model.Plant;
 import com.livos.companionplants.ui.plants.AssociatedPlant;
-import com.livos.companionplants.ui.plants.PlantsMvpPresenter;
 import com.livos.companionplants.utils.CastHelper;
 
 import java.util.List;
@@ -27,13 +25,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
     public void updateAssociatedPlants(List<AssociatedPlant> plants) {
         this.plants = plants;
+
     }
 
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_list_item, null);
-        RecyclerViewHolder viewHolder = new RecyclerViewHolder(view);
-        return viewHolder;
+        return new RecyclerViewHolder(view);
     }
 
     @Override

@@ -53,9 +53,13 @@ public class SearchPresenter <V extends SearchMvpView> extends BasePresenter<V>
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         Long savedStatePlantId = savedInstanceState.getLong("plantSelectedId");
-        selectedPlant = getDataManager().getPlantById(savedStatePlantId);
-        getDataManager().setSelectedPlant(selectedPlant);
-        getMvpView().setCurrentPlant(selectedPlant);
+
+        // A plant has already been previously selected
+        if(savedStatePlantId != 0) {
+            selectedPlant = getDataManager().getPlantById(savedStatePlantId);
+            getDataManager().setSelectedPlant(selectedPlant);
+            getMvpView().setCurrentPlant(selectedPlant);
+        }
     }
 
 }

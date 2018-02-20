@@ -7,6 +7,7 @@ import com.livos.companionplants.data.DataManager;
 import com.livos.companionplants.data.local.db.model.Plant;
 import com.livos.companionplants.ui.base.BasePresenter;
 import com.livos.companionplants.ui.events.PlantSelectedEvent;
+import com.livos.companionplants.ui.main.MainActivity;
 
 import java.util.List;
 
@@ -28,8 +29,16 @@ public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
     public void onViewPrepared(int tabIndex) {
         this.tabIndex = tabIndex;
         selectedPlant = getDataManager().getSelectedPlant();
-        List<AssociatedPlant> plants = getAssociatedplants(selectedPlant,tabIndex);
-        getMvpView().loadPlants(plants);
+
+        // We only fill the tabs recyclerview if a plant has been selected or we are on the default sceen with all
+        // plants and no tabs (tabindex = -1)
+        if(selectedPlant != null || (selectedPlant == null && tabIndex == -1)) {
+            List<AssociatedPlant> plants = getAssociatedplants(selectedPlant, tabIndex);
+
+            getMvpView().loadPlants(plants);
+        }
+
+
     }
 
     private List<AssociatedPlant> getAssociatedplants(Plant selectedPlant, int tabIndex) {

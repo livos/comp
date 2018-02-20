@@ -2,6 +2,7 @@ package com.livos.companionplants.ui.main;
 
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.livos.companionplants.data.DataManager;
 import com.livos.companionplants.data.local.db.model.Plant;
@@ -29,5 +30,13 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
         getDataManager().setSelectedPlant(null);
     }
 
-
+//    @Override
+//    public Plant getSelectedPlant() {
+//        return  getDataManager().getSelectedPlant();
+//    }
+//
+//    @Override
+//    public void setSelectedPlant(Plant plant) {
+//        getDataManager().setSelectedPlant(plant);
+//    }
 }
