@@ -14,11 +14,11 @@ import com.livos.companionplants.utils.CastHelper;
 
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder>  {
+public class PlantsRecyclerViewAdapter extends RecyclerView.Adapter<PlantsRecyclerViewHolder>  {
     private Context context;
     private List<AssociatedPlant> plants;
 
-    public RecyclerViewAdapter(Context context) {
+    public PlantsRecyclerViewAdapter(Context context) {
         this.context = context;
     }
 
@@ -29,13 +29,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     }
 
     @Override
-    public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PlantsRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_list_item, null);
-        return new RecyclerViewHolder(view);
+        return new PlantsRecyclerViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewHolder holder, int position) {
+    public void onBindViewHolder(PlantsRecyclerViewHolder holder, int position) {
         int resourceId = context.getResources().getIdentifier(plants.get(position).getPlant().getPictures().get(0).getPicture(),"drawable", context.getPackageName());
         holder.getIvPlant().setImageResource(resourceId);
         holder.getTvPlantName().setText(plants.get(position).getPlant().getDefinitions().get(0).getDefinition());

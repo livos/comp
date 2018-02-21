@@ -3,9 +3,6 @@ package com.livos.companionplants.ui.plants;
 import com.livos.companionplants.data.local.db.model.Flag;
 import com.livos.companionplants.data.local.db.model.Plant;
 
-/**
- * Created by laurent on 2/3/18.
- */
 
 public class AssociatedPlant  {
     private Plant plant;

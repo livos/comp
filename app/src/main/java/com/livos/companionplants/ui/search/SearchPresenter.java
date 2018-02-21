@@ -31,7 +31,7 @@ public class SearchPresenter <V extends SearchMvpView> extends BasePresenter<V>
     }
 
     /**
-     * Send data to the view regarding the selected plant in the autocomplete textview
+     * Send data to the view regarding the clicked plant in the autocomplete textview
      * @param plantDefinition Selected plant name
      */
     public void onListPlantClicked(PlantDefinition plantDefinition) {

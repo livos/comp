@@ -10,9 +10,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.livos.companionplants.R;
 import com.livos.companionplants.ui.plants.PlantsFragment;
 
-/**
- * Created by laurent on 2/7/18.
- */
 
 public class PlantsPagerAdapter extends FragmentStatePagerAdapter {
     private static final int TABS_COUNT = 4;

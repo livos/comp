@@ -4,10 +4,17 @@ package com.livos.companionplants.ui.main;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TableLayout;
@@ -33,14 +40,25 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     private static final int NO_TABS = -1;
     private int selectedTab = NO_TABS;
 
+    private ActionBarDrawerToggle drawerToggle;
+
     @Inject
     MainMvpPresenter<MainMvpView> presenter;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.dl_main)
+    DrawerLayout dlMain;
 
     @BindView(R.id.vp_plants)
     ViewPager vpPlants;
 
     @BindView(R.id.tl_plants)
     TabLayout tlPlants;
+
+    @BindView(R.id.nv_main)
+    NavigationView nvMain;
 
     @BindView(R.id.fl_container_plants)
     FrameLayout flContainerPlants;
@@ -65,11 +83,67 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     protected void setUp() {
+        setSupportActionBar(toolbar);
+        drawerToggle = new ActionBarDrawerToggle(
+                this,
+                dlMain,
+                toolbar,
+                R.string.open_drawer,
+                R.string.close_drawer) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                hideKeyboard();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+        };
+
+        dlMain.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+        setupNavMenu();
+        presenter.onNavMenuCreated();
+
+
         PlantsPagerAdapter plantsPagerAdapter = new PlantsPagerAdapter(getSupportFragmentManager(), this);
         vpPlants.setAdapter(plantsPagerAdapter);
 
         tlPlants.setupWithViewPager(vpPlants);
 
+    }
+
+    private void setupNavMenu() {
+        //View headerLayout = nvMain.getHeaderView(0);
+
+        nvMain.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        dlMain.closeDrawer(GravityCompat.START);
+                        switch (item.getItemId()) {
+//                            case R.id.nav_item_help:
+//                                //presenter.onDrawerOptionAboutClick();
+//                                return true;
+                            case R.id.nav_item_rate_us:
+                                //presenter.onDrawerRateUsClick();
+                               // rateApp(MainActivity.this);
+                                return true;
+                            case R.id.nav_item_credits:
+                                //showCredits();
+                                return true;
+//                            case R.id.nav_item_feedback:
+//                                return true;
+                            case R.id.nav_item_share:
+                                //shareApp(MainActivity.this);
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
     }
 
     private void showPlantsFragment() {

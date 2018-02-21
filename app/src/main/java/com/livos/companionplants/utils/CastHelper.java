@@ -1,8 +1,6 @@
 package com.livos.companionplants.utils;
 
-/**
- * Created by laurent on 2/3/18.
- */
+
 
 public class CastHelper {
     public static int safeLongToInt(long l) {

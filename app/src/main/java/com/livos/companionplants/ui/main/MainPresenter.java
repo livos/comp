@@ -29,4 +29,10 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
         // App has just been started, no plant has been already selected
         getDataManager().setSelectedPlant(null);
     }
+
+    // Get data to use in navbar (app version ...etc)
+    @Override
+    public void onNavMenuCreated() {
+
+    }
 }

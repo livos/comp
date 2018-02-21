@@ -14,12 +14,12 @@ import com.livos.companionplants.ui.plants.AssociatedPlant;
 
 import org.greenrobot.eventbus.EventBus;
 
-public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class PlantsRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private TextView tvPlantName;
     private ImageView ivPlant;
 
 
-    public RecyclerViewHolder(View itemView) {
+    public PlantsRecyclerViewHolder(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
         tvPlantName = itemView.findViewById(R.id.tv_plant_name);

@@ -1,6 +1,7 @@
 package com.livos.companionplants.ui.plants;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,7 +14,7 @@ import android.widget.LinearLayout;
 import com.livos.companionplants.R;
 import com.livos.companionplants.di.component.ActivityComponent;
 import com.livos.companionplants.ui.base.BaseFragment;
-import com.livos.companionplants.ui.plants.adapters.RecyclerViewAdapter;
+import com.livos.companionplants.ui.plants.adapters.PlantsRecyclerViewAdapter;
 import com.livos.companionplants.ui.events.PlantSelectedEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -30,10 +31,12 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     public static final String TAG = "PlantsFragment";
     private int tabIndex = -1;
     private long selectedPlantId = 0;
-    private RecyclerViewAdapter adapter;
+    private PlantsRecyclerViewAdapter adapter;
 
     List<AssociatedPlant> plants;
     PlantSelectedEvent plantSelectedEvent;
+
+
 
     @Inject
     PlantsMvpPresenter<PlantsMvpView> presenter;
@@ -93,7 +96,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
 
         rvPlants.setLayoutManager(new GridLayoutManager(getContext(), 4));
 
-        adapter = new RecyclerViewAdapter(getContext());
+        adapter = new PlantsRecyclerViewAdapter(getContext());
 
         return view;
     }
@@ -109,6 +112,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
 
     @Override
     protected void setUp(View view) {
+        rvPlants.setAdapter(adapter);
         presenter.onViewPrepared(tabIndex);
 
     }
@@ -122,7 +126,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
         adapter.updateAssociatedPlants(plants);
         adapter.notifyDataSetChanged();
 
-        rvPlants.setAdapter(adapter);
+
 
     }
 
