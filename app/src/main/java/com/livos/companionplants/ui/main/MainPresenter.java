@@ -29,14 +29,4 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
         // App has just been started, no plant has been already selected
         getDataManager().setSelectedPlant(null);
     }
-
-//    @Override
-//    public Plant getSelectedPlant() {
-//        return  getDataManager().getSelectedPlant();
-//    }
-//
-//    @Override
-//    public void setSelectedPlant(Plant plant) {
-//        getDataManager().setSelectedPlant(plant);
-//    }
 }

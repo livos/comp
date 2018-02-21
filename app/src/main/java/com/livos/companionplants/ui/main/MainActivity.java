@@ -117,6 +117,10 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         selectedTab = 0;
     }
 
+    /**
+     * Toggle tabs visibility
+     * @param visibility
+     */
     private void toggleTabs(int visibility) {
         tlPlants.setVisibility(visibility); // Show TableLayout
         vpPlants.setVisibility(visibility); // Show ViewPager

@@ -41,6 +41,12 @@ public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
 
     }
 
+    /**
+     * Get plants associated with the one selected
+     * @param selectedPlant
+     * @param tabIndex current tab, needed to know which associations type to get
+     * @return associated plants
+     */
     private List<AssociatedPlant> getAssociatedplants(Plant selectedPlant, int tabIndex) {
         //List<AssociatedPlant> associatedPlants = getDataManager().getAssociatedPlants(selectedPlant.getId());
         List<AssociatedPlant> associatedPlants = null;
@@ -64,6 +70,11 @@ public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
         return associatedPlants;
     }
 
+    /**
+     * A plant has been selected by user
+     * @param plantSelectedEvent Event contanining the selected plant
+     * @param tabIndex
+     */
     public void onSelectedPlantChanged(PlantSelectedEvent plantSelectedEvent, int tabIndex) {
         getDataManager().setSelectedPlant(plantSelectedEvent.getPlant());
         this.tabIndex = tabIndex;

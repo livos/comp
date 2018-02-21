@@ -99,8 +99,6 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
                 PlantDefinition plantDefinition = (PlantDefinition)adapterView.getAdapter().getItem(i);
                 presenter.onListPlantClicked(plantDefinition);
                 hideKeyboard();
-
-
             }
         });
 
@@ -108,6 +106,10 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
     }
 
 
+    /**
+     * Load plants definitions in adapter
+     * @param definitions
+     */
     @Override
     public void loadDefinitions(List<PlantDefinition> definitions) {
         plantSearchAdapter = new PlantSearchAdapter(getContext(), 0, definitions);
@@ -121,13 +123,17 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
         EventBus.getDefault().post(plantSelectedEvent);
     }
 
+    /**
+     * Set plant image and autocomplete texview with current selected plant
+     * @param selectedPlant
+     */
     @Override
-    public void setCurrentPlant(Plant plant) {
+    public void setCurrentPlant(Plant selectedPlant) {
         Resources resources = getContext().getResources();
-        int resourceId = resources.getIdentifier(plant.getPictures().get(0).getPicture(), "drawable",
+        int resourceId = resources.getIdentifier(selectedPlant.getPictures().get(0).getPicture(), "drawable",
                 getContext().getPackageName());
 
-        String currentPlantName = plant.getDefinitions().get(0).getDefinition();
+        String currentPlantName = selectedPlant.getDefinitions().get(0).getDefinition();
         actvSearch.setText(currentPlantName);
         civPlant.setImageDrawable( resources.getDrawable(resourceId));
         actvSearch.setSelection(currentPlantName.length()); // Put the cursor at the end of the name of the new searched plant

@@ -30,6 +30,10 @@ public class SearchPresenter <V extends SearchMvpView> extends BasePresenter<V>
         getMvpView().loadDefinitions(plantsDefinitions);
     }
 
+    /**
+     * Send data to the view regarding the selected plant in the autocomplete textview
+     * @param plantDefinition Selected plant name
+     */
     public void onListPlantClicked(PlantDefinition plantDefinition) {
         selectedPlant = getDataManager().getPlantById(plantDefinition.getId());
         getDataManager().setSelectedPlant(selectedPlant);
