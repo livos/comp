@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
     private static final int NO_TABS = -1;
-    private int selectedTab;
+    private int selectedTab = NO_TABS;
 
     @Inject
     MainMvpPresenter<MainMvpView> presenter;
@@ -90,22 +90,39 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("selectedTab",selectedTab);
+
+    }
+
+    @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        toggleTabs(View.VISIBLE);
+        selectedTab = savedInstanceState.getInt("selectedTab");
+
+        if(selectedTab == -1) {
+            toggleTabs(View.GONE);
+        } else {
+            toggleTabs(View.VISIBLE);
+        }
     }
 
     @Subscribe
     public void onSelectedPlantEvent(PlantSelectedEvent plantSelectedEvent) {
         toggleTabs(View.VISIBLE);
 
+        // a plants has been selected, selected tab is set to a value different of NO_TABS to be
+        // able to see a plant has been selected and we have to set the tabs visible
+        selectedTab = 0;
     }
 
     private void toggleTabs(int visibility) {
         tlPlants.setVisibility(visibility); // Show TableLayout
         vpPlants.setVisibility(visibility); // Show ViewPager
         if (visibility == View.VISIBLE) {
-            flContainerPlants.setVisibility(View.GONE); // Hide FrameLayout with all plants (not tab and no filter applied => welcome screen)
+            // Hide FrameLayout with all plants (not tab and no filter applied => welcome screen)
+            flContainerPlants.setVisibility(View.GONE);
         } else {
             flContainerPlants.setVisibility(View.VISIBLE);
         }
