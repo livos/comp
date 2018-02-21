@@ -30,6 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
+    private static final int NO_TABS = -1;
     private int selectedTab;
 
     @Inject
@@ -75,7 +76,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         getSupportFragmentManager()
                 .beginTransaction()
                 //.disallowAddToBackStack()
-                .add(R.id.fl_container_plants, PlantsFragment.newInstance(), PlantsFragment.TAG)
+                .add(R.id.fl_container_plants, PlantsFragment.newInstance(NO_TABS), PlantsFragment.TAG) // -1 : showing
                 .commit();
 
     }
@@ -97,6 +98,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @Subscribe
     public void onSelectedPlantEvent(PlantSelectedEvent plantSelectedEvent) {
         toggleTabs(View.VISIBLE);
+
     }
 
     private void toggleTabs(int visibility) {

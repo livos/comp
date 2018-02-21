@@ -15,6 +15,8 @@ import com.livos.companionplants.ui.plants.PlantsFragment;
  */
 
 public class PlantsPagerAdapter extends FragmentStatePagerAdapter {
+    private static final int TABS_COUNT = 4;
+
     private Context context;
     public PlantsPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
@@ -23,19 +25,12 @@ public class PlantsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int tabIndex) {
-        PlantsFragment fragment = PlantsFragment.newInstance();
-        Bundle args = new Bundle();
-        args.putInt("tabIndex", tabIndex);
-        fragment.setArguments(args);
-
-        return fragment;
-
+        return PlantsFragment.newInstance(tabIndex);
     }
 
     @Override
     public int getCount() {
-
-        return 4;
+        return TABS_COUNT;
     }
 
     // This determines the title for each tab

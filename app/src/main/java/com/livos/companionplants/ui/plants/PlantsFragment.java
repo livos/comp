@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
 public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     public static final String TAG = "PlantsFragment";
     private int tabIndex = -1;
-    private long selectedPlantId;
+    private long selectedPlantId = 0;
     private RecyclerViewAdapter adapter;
 
     List<AssociatedPlant> plants;
@@ -45,8 +45,11 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     LinearLayout llTabs;
 
 
-    public static PlantsFragment newInstance() {
+    public static PlantsFragment newInstance(int tabIndex) {
+        Bundle args = new Bundle();
+        args.putInt("tabIndex",tabIndex);
         PlantsFragment fragment = new PlantsFragment();
+        fragment.setArguments(args);
         return fragment;
     }
 
