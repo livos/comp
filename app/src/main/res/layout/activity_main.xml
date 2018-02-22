@@ -22,6 +22,7 @@
             <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/dark_green"
                 app:elevation="5dp">
 
                 <android.support.v7.widget.Toolbar
@@ -57,9 +58,13 @@
                 android:id="@+id/tl_plants"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:elevation="@dimen/tab_elevation"
+                app:tabMaxWidth="0dp"
+                app:tabGravity="fill"
                 app:tabMode="fixed"
-                android:visibility="gone"
-                app:tabGravity="fill" />
+                style="@style/TabLayout.Default"
+                android:background="@color/light_green"
+                android:visibility="gone" />
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_plants"

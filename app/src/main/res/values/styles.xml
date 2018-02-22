@@ -110,6 +110,20 @@
         <item name="android:background">@color/transparent</item>
     </style>
 
+    <!-- Tabs -->
+    <style name="TabLayout.Default" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/white_green</item>
+        <item name="tabTextAppearance">@style/TabLayout.Text.Default</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+    </style>
+    
+    <style name="TabLayout.Text.Default" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white_green</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+
 
 
 </resources>

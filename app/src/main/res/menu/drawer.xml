@@ -3,6 +3,11 @@
     <group android:id="@+id/grp_menu_top"
            android:checkableBehavior="none">
         <item
+            android:id="@+id/nav_item_help"
+            android:checked="true"
+            android:icon="@drawable/ic_help_black_24px"
+            android:title="@string/help" />
+        <item
             android:id="@+id/nav_item_rate_us"
             android:checked="true"
             android:icon="@drawable/ic_star_black_24px"
@@ -12,11 +17,12 @@
             android:checked="true"
             android:icon="@drawable/ic_share_black_24px"
             android:title="@string/share" />
-        <item
-            android:id="@+id/nav_item_donate"
-            android:checked="true"
-            android:icon="@drawable/ic_heart_black_24dp"
-            android:title="@string/donate" />
+
+        <!--<item-->
+            <!--android:id="@+id/nav_item_donate"-->
+            <!--android:checked="true"-->
+            <!--android:icon="@drawable/ic_heart_black_24dp"-->
+            <!--android:title="@string/donate" />-->
     </group>
     <group android:id="@+id/grp_menu_middle"
            android:checkableBehavior="none">
