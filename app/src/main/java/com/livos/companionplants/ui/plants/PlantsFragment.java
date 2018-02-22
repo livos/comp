@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.livos.companionplants.R;
@@ -42,10 +43,13 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     PlantsMvpPresenter<PlantsMvpView> presenter;
 
     @BindView(R.id.rv_plants)
-    RecyclerView rvPlants;
+    EmptyRecycleView rvPlants;
 
     @BindView(R.id.ll_tabs)
     LinearLayout llTabs;
+
+    @BindView(R.id.fl_plants_empty_view)
+    FrameLayout flPlantsEmptyView;
 
 
     public static PlantsFragment newInstance(int tabIndex) {
@@ -95,6 +99,12 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
         readBundle(getArguments());
 
         rvPlants.setLayoutManager(new GridLayoutManager(getContext(), 4));
+
+        // Fetch the empty view from the layout and set it on
+        // the new recycler view
+
+        rvPlants.setEmptyView(flPlantsEmptyView);
+
 
         adapter = new PlantsRecyclerViewAdapter(getContext());
 

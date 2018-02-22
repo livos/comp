@@ -22,11 +22,30 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
+        <com.livos.companionplants.ui.plants.EmptyRecycleView
             android:id="@+id/rv_plants"
             android:layout_width="match_parent"
+            android:background="@color/white_green"
             android:layout_height="0dp"
             android:scrollbars="vertical"
             android:layout_weight="1"/>
+
+        <FrameLayout
+            android:id="@+id/fl_plants_empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white_green"
+            android:visibility="gone"
+            android:textAlignment="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:padding="16dp"
+                android:text="Nothing found for this plant"/>
+
+        </FrameLayout>
     </LinearLayout>
 </LinearLayout>

@@ -50,8 +50,11 @@ public class PlantsRecyclerViewAdapter extends RecyclerView.Adapter<PlantsRecycl
 
     @Override
     public int getItemCount() {
-
-        return plants.size();
+        int itemCount = 0;
+        if(plants != null) {
+            itemCount = plants.size();
+        }
+        return itemCount;
     }
 
     public int getFlagColor(Long flagId) {
