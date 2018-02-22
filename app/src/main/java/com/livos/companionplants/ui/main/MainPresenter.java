@@ -3,6 +3,7 @@ package com.livos.companionplants.ui.main;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.livos.companionplants.data.DataManager;
 import com.livos.companionplants.data.local.db.model.Plant;
@@ -35,4 +36,36 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
     public void onNavMenuCreated() {
 
     }
+
+    @Override
+    public void setTabsVisibility(long plantId) {
+        int helpsSize = getDataManager().getAssociatedPlantsHelps(plantId).size();
+        int helpedBySize = getDataManager().getAssociatedPlantsHelpedBy(plantId).size();
+        int avoidSize = getDataManager().getAssociatedPlantsAvoid(plantId).size();
+        int neutralSize = getDataManager().getAssociatedPlantsNeutral(plantId).size();
+
+        if(helpsSize == 0) {
+            getMvpView().toggleTab(0, View.GONE);
+        } else {
+            getMvpView().toggleTab(0, View.VISIBLE);
+        }
+        if(helpedBySize == 0) {
+            getMvpView().toggleTab(1, View.GONE);
+        } else {
+            getMvpView().toggleTab(1, View.VISIBLE);
+        }
+        if(avoidSize == 0) {
+            getMvpView().toggleTab(2, View.GONE);
+        } else {
+            getMvpView().toggleTab(2, View.VISIBLE);
+        }
+        if(neutralSize == 0) {
+            getMvpView().toggleTab(3, View.GONE);
+        } else {
+            getMvpView().toggleTab(3, View.VISIBLE);
+        }
+
+    }
+
+
 }

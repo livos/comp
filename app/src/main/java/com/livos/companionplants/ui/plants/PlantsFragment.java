@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import com.livos.companionplants.R;
 import com.livos.companionplants.di.component.ActivityComponent;
 import com.livos.companionplants.ui.base.BaseFragment;
+import com.livos.companionplants.ui.events.EmptyTabEvent;
 import com.livos.companionplants.ui.plants.adapters.PlantsRecyclerViewAdapter;
 import com.livos.companionplants.ui.events.PlantSelectedEvent;
 
@@ -43,7 +44,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     PlantsMvpPresenter<PlantsMvpView> presenter;
 
     @BindView(R.id.rv_plants)
-    EmptyRecycleView rvPlants;
+    RecyclerView rvPlants;
 
     @BindView(R.id.ll_tabs)
     LinearLayout llTabs;
@@ -103,7 +104,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
         // Fetch the empty view from the layout and set it on
         // the new recycler view
 
-        rvPlants.setEmptyView(flPlantsEmptyView);
+        //rvPlants.setEmptyView(flPlantsEmptyView);
 
 
         adapter = new PlantsRecyclerViewAdapter(getContext());
@@ -131,10 +132,14 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     public void loadPlants(List<AssociatedPlant> plants) {
         hideKeyboard();
 
-        this.plants = plants;
 
-        adapter.updateAssociatedPlants(plants);
-        adapter.notifyDataSetChanged();
+        if(plants.size() != 0) {
+
+            this.plants = plants;
+
+            adapter.updateAssociatedPlants(plants);
+            adapter.notifyDataSetChanged();
+        }
 
 
 

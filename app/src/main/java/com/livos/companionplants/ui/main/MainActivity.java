@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TableLayout;
 
@@ -23,6 +24,7 @@ import com.livos.companionplants.R;
 import com.livos.companionplants.data.local.db.model.Plant;
 import com.livos.companionplants.di.component.ActivityComponent;
 import com.livos.companionplants.ui.base.BaseActivity;
+import com.livos.companionplants.ui.events.EmptyTabEvent;
 import com.livos.companionplants.ui.events.PlantSelectedEvent;
 import com.livos.companionplants.ui.main.adapters.PlantsPagerAdapter;
 import com.livos.companionplants.ui.plants.PlantsFragment;
@@ -182,9 +184,12 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         }
     }
 
+
     @Subscribe
     public void onSelectedPlantEvent(PlantSelectedEvent plantSelectedEvent) {
         toggleTabs(View.VISIBLE);
+
+        presenter.setTabsVisibility(plantSelectedEvent.getPlant().getId());
 
         // a plants has been selected, selected tab is set to a value different of NO_TABS to be
         // able to see a plant has been selected and we have to set the tabs visible
@@ -222,4 +227,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         }
     }
 
+    @Override
+    public void toggleTab(int taIdx, int visibility) {
+        ((ViewGroup) tlPlants.getChildAt(0)).getChildAt(taIdx).setVisibility(visibility);
+    }
 }

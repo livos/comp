@@ -11,6 +11,7 @@ import com.livos.companionplants.ui.events.PlantSelectedEvent;
 @PerActivity
 public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V> {
     void onNavMenuCreated();
+    void setTabsVisibility(long plantId);
 
 
 }
