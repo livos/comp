@@ -5,6 +5,9 @@
     <string name="all">All plants</string>
     <string name="hint_actv_search">Enter plant name</string>
 
+    <!-- Toolbar -->
+    <string name= "toolbar_reload">All plants</string>
+
     <!--Drawer-->
     <string name="open_drawer">Drawer Open</string>
     <string name="close_drawer">Drawer Close</string>
