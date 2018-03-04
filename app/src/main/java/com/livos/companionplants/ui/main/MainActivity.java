@@ -217,7 +217,9 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
         presenter.setTabsVisibility(plantSelectedEvent.getPlant().getId());
 
-       
+        // Select 1st tab when a new plant is selected
+        TabLayout.Tab tab = tlPlants.getTabAt(0);
+        tab.select();
 
         // a plants has been selected, selected tab is set to a value different of NO_TABS to be
         // able to see a plant has been selected and we have to set the tabs visible
