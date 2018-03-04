@@ -38,6 +38,8 @@ public class PlantsApp  extends Application {
 
         Realm.init(this);
 
+        initRealmConfiguration();
+
 
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this)).build();
@@ -56,6 +58,15 @@ public class PlantsApp  extends Application {
     // Needed to replace the component with a test specific one
     public void setComponent(ApplicationComponent applicationComponent) {
         applicationComponent = applicationComponent;
+    }
+
+    private void initRealmConfiguration() {
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("plants.realm")
+                .schemaVersion(1)
+                .assetFile("database/plants.realm")
+                .build();
+        Realm.setDefaultConfiguration(config);
     }
 
 

@@ -44,15 +44,7 @@ public class ApplicationModule {
     @Provides
     @Singleton
     Realm provideRealm() {
-        RealmConfiguration config = new RealmConfiguration.Builder()
-                .name("plants.realm")
-                .schemaVersion(1)
-                .assetFile("database/plants.realm")
-                .build();
-
-        Realm realm = Realm.getInstance(config);
-
-        return realm;
+        return Realm.getDefaultInstance();
     }
 
     @Provides
