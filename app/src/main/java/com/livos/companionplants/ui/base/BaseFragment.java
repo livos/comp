@@ -1,19 +1,22 @@
 package com.livos.companionplants.ui.base;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.livos.companionplants.di.component.ActivityComponent;
+import com.livos.companionplants.utils.CommonUtils;
 
 import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment implements MvpView {
     private Unbinder unbinder;
-
+    private ProgressDialog progressDialog;
     private BaseActivity activity;
 
     @Override
@@ -70,6 +73,20 @@ public abstract class BaseFragment extends Fragment implements MvpView {
     public void hideKeyboard() {
         if (activity != null) {
             activity.hideKeyboard();
+        }
+    }
+
+    @Override
+    public void showMessage(String message) {
+        if (activity != null) {
+            activity.showMessage(message);
+        }
+    }
+
+    @Override
+    public void showMessage(@StringRes int resId) {
+        if (activity != null) {
+            activity.showMessage(resId);
         }
     }
 

@@ -16,6 +16,7 @@ import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
 
+
 public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> implements MainMvpPresenter<V> {
 
     @Inject
@@ -36,6 +37,8 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
     public void onNavMenuCreated() {
 
     }
+
+
 
     @Override
     public void setTabsVisibility(long plantId) {
@@ -65,6 +68,25 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
             getMvpView().toggleTab(3, View.VISIBLE);
         }
 
+    }
+
+    @Override
+    public void onDrawerCreditsClick() {
+        getMvpView().showCredits();
+    }
+
+    @Override
+    public void onDrawerShareAppClick() {
+        getMvpView().shareApp();
+    }
+
+    @Override
+    public void onDrawerRateUsClick() {
+
+
+
+        getMvpView().closeNavigationDrawer();
+        getMvpView().rateApp();
     }
 
 

@@ -3,23 +3,15 @@ package com.livos.companionplants;
 
 import android.app.Application;
 
-import com.livos.companionplants.data.AppDataManager;
 import com.livos.companionplants.data.DataManager;
-import com.livos.companionplants.data.local.db.AppDbHelper;
-import com.livos.companionplants.data.local.db.DbHelper;
-import com.livos.companionplants.data.local.db.model.Plant;
-import com.livos.companionplants.data.local.db.model.PlantDefinition;
 import com.livos.companionplants.di.component.ApplicationComponent;
 import com.livos.companionplants.di.component.DaggerApplicationComponent;
 import com.livos.companionplants.di.module.ApplicationModule;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.internal.RealmCore;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class PlantsApp  extends Application {
@@ -45,8 +37,6 @@ public class PlantsApp  extends Application {
                 .applicationModule(new ApplicationModule(this)).build();
 
         applicationComponent.inject(this);
-
-
         CalligraphyConfig.initDefault(calligraphyConfig);
 
     }

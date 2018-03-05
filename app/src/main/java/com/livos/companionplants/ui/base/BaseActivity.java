@@ -1,24 +1,29 @@
 package com.livos.companionplants.ui.base;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.livos.companionplants.PlantsApp;
+import com.livos.companionplants.R;
 import com.livos.companionplants.di.component.ActivityComponent;
 import com.livos.companionplants.di.component.DaggerActivityComponent;
 import com.livos.companionplants.di.module.ActivityModule;
+import com.livos.companionplants.utils.CommonUtils;
 
 import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity
         implements MvpView, BaseFragment.Callback  {
     Unbinder unbinder;
-
+    private ProgressDialog progressDialog;
     private ActivityComponent mActivityComponent;
 
     @Override
@@ -67,4 +72,21 @@ public abstract class BaseActivity extends AppCompatActivity
     }
 
     protected abstract void setUp();
+
+    @Override
+    public void showMessage(String message) {
+        if (message != null) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, getString(R.string.some_error), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void showMessage(@StringRes int resId) {
+        showMessage(getString(resId));
+    }
+
+
+
 }

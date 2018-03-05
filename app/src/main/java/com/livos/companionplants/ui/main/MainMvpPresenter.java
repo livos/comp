@@ -12,6 +12,9 @@ import com.livos.companionplants.ui.events.PlantSelectedEvent;
 public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V> {
     void onNavMenuCreated();
     void setTabsVisibility(long plantId);
+    void onDrawerCreditsClick();
+    void onDrawerShareAppClick();
+    void onDrawerRateUsClick();
 
 
 }

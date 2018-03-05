@@ -51,4 +51,5 @@ public class ActivityModule {
     MainMvpPresenter<MainMvpView> provideMainPresenter(MainPresenter<MainMvpView> presenter) {
         return presenter;
     }
+
 }

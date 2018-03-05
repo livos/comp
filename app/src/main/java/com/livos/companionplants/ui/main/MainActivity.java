@@ -2,6 +2,8 @@ package com.livos.companionplants.ui.main;
 
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -32,6 +34,8 @@ import com.livos.companionplants.ui.events.PlantSelectedEvent;
 import com.livos.companionplants.ui.main.adapters.PlantsPagerAdapter;
 import com.livos.companionplants.ui.plants.PlantsFragment;
 import com.livos.companionplants.ui.search.SearchFragment;
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -40,6 +44,9 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.livos.companionplants.utils.AppUtils.rateApplication;
+
 
 public class MainActivity extends BaseActivity implements MainMvpView {
     private static final int NO_TABS = -1;
@@ -88,6 +95,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     protected void setUp() {
+        //== Drawer ==
         setSupportActionBar(toolbar);
         drawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -112,13 +120,15 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         setupNavMenu();
         presenter.onNavMenuCreated();
 
-
+        // == Viewpager ==
         PlantsPagerAdapter plantsPagerAdapter = new PlantsPagerAdapter(getSupportFragmentManager(), this);
         vpPlants.setAdapter(plantsPagerAdapter);
 
         tlPlants.setupWithViewPager(vpPlants);
 
     }
+
+
 
     private void setupNavMenu() {
         //View headerLayout = nvMain.getHeaderView(0);
@@ -129,20 +139,20 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         dlMain.closeDrawer(GravityCompat.START);
                         switch (item.getItemId()) {
-                            case R.id.nav_item_help:
+                           // case R.id.nav_item_help:
 //                                //presenter.onDrawerOptionAboutClick();
 //                                return true;
                             case R.id.nav_item_rate_us:
-                                //presenter.onDrawerRateUsClick();
+                                presenter.onDrawerRateUsClick();
                                // rateApp(MainActivity.this);
                                 return true;
                             case R.id.nav_item_credits:
-                                //showCredits();
+                                presenter.onDrawerCreditsClick();
                                 return true;
 //                            case R.id.nav_item_feedback:
 //                                return true;
                             case R.id.nav_item_share:
-                                //shareApp(MainActivity.this);
+                                presenter.onDrawerShareAppClick();
                                 return true;
                             default:
                                 return false;
@@ -159,6 +169,29 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                 .commit();
 
     }
+
+    @Override
+    public void rateApp() {
+        rateApplication(MainActivity.this);
+    }
+
+    @Override
+    public void shareApp(){
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(Intent.EXTRA_SUBJECT, MainActivity.this.getString(R.string.app_name));
+            String message = "\nLet me recommend you this application\n\n";
+            String url =  "https://play.google.com/store/apps/details";
+            String sAux = String.format("%s%s?id=%s",message, url,  MainActivity.this.getPackageName());
+            i.putExtra(Intent.EXTRA_TEXT, sAux);
+            MainActivity.this.startActivity(Intent.createChooser(i, "choose one"));
+    }
+
+    @Override
+    public void closeNavigationDrawer() {
+
+    }
+
 
     private void showSearchFragment() {
         getSupportFragmentManager()
@@ -227,7 +260,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     }
 
     /**
-     * Toggle tabs visibility
+     * Toggle all tabs visibility
      * @param visibility
      */
     private void toggleTabs(int visibility) {
@@ -257,8 +290,28 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         }
     }
 
+    /**
+     * Toggle single tab visibility
+     * @param taIdx
+     * @param visibility
+     */
     @Override
     public void toggleTab(int taIdx, int visibility) {
         ((ViewGroup) tlPlants.getChildAt(0)).getChildAt(taIdx).setVisibility(visibility);
     }
+
+    /**
+     * Show application credits
+     */
+    @Override
+    public void showCredits() {
+        new LibsBuilder()
+                //provide a style (optional) (LIGHT, DARK, LIGHT_DARK_TOOLBAR)
+                .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
+                //start the activity
+                .start(MainActivity.this);
+
+    }
+
+
 }

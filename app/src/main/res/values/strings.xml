@@ -35,4 +35,13 @@
     <string name="title_helped_by">HELPED BY</string>
     <string name="title_avoid">AVOID</string>
     <string name="title_neutral">NEUTRAL</string>
+
+    <!--play store-->
+    <string name="app_google_play_store_link">"https://play.google.com/store/apps/details?id="</string>
+    <string name="app_market_link">"market://details?id="</string>
+
+    <!--App Message-->
+    <string name="api_retry_error">Please retry!</string>
+    <string name="api_default_error">Something wrong happened!</string>
+    <string name="some_error">Some Error Occurred!</string>
 </resources>
