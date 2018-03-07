@@ -37,6 +37,7 @@ public class PlantsRecyclerViewAdapter extends RecyclerView.Adapter<PlantsRecycl
     @Override
     public void onBindViewHolder(PlantsRecyclerViewHolder holder, int position) {
         int resourceId = context.getResources().getIdentifier(plants.get(position).getPlant().getPictures().get(0).getPicture(),"drawable", context.getPackageName());
+
         holder.getIvPlant().setImageResource(resourceId);
         holder.getTvPlantName().setText(plants.get(position).getPlant().getDefinitions().get(0).getDefinition());
 
