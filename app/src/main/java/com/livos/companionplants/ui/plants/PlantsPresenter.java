@@ -55,16 +55,16 @@ public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
                 associatedPlants =  getDataManager().getAllPlants();
                 break;
             case 0: // helps
-                associatedPlants = getDataManager().getAssociatedPlantsByFlag(selectedPlant.getId(),1);
+                associatedPlants = getDataManager().getAssociatedPlantsByFlag(selectedPlant.getId(),1L);
                 break;
             case 1: // helped by
-                associatedPlants = getDataManager().getAssociatedPlantsByFlag(selectedPlant.getId(),2);
+                associatedPlants = getDataManager().getAssociatedPlantsByFlag(selectedPlant.getId(),2L);
                 break;
             case 2: // avoid
-                associatedPlants = getDataManager().getAssociatedPlantsByFlag(selectedPlant.getId(),5);
+                associatedPlants = getDataManager().getAssociatedPlantsByFlag(selectedPlant.getId(),5L);
                 break;
             case 3: // neutral
-                associatedPlants = getDataManager().getAssociatedPlantsByFlag(selectedPlant.getId(),6);
+                associatedPlants = getDataManager().getAssociatedPlantsByFlag(selectedPlant.getId(),6L);
                 break;
         }
         return associatedPlants;

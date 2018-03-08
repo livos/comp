@@ -164,7 +164,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     private void showPlantsFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                //.disallowAddToBackStack()
+                // .disallowAddToBackStack()
                 .add(R.id.fl_container_plants, PlantsFragment.newInstance(NO_TABS), PlantsFragment.TAG) // -1 : showing
                 .commit();
 
@@ -180,8 +180,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
             i.putExtra(Intent.EXTRA_SUBJECT, MainActivity.this.getString(R.string.app_name));
-            String message = "\nLet me recommend you this application\n\n";
-            String url =  "https://play.google.com/store/apps/details";
+            String message = getString(R.string.share_app_message);
+            String url =  getString(R.string.app_details_base_url);
             String sAux = String.format("%s%s?id=%s",message, url,  MainActivity.this.getPackageName());
             i.putExtra(Intent.EXTRA_TEXT, sAux);
             MainActivity.this.startActivity(Intent.createChooser(i, "choose one"));
@@ -243,6 +243,19 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         }
     }
 
+    private void selectFirstVisibleTab() {
+        boolean visibleTabFound = false;
+        int tabIdx = 0;
+        while(!visibleTabFound) {
+            View v = ((ViewGroup) tlPlants.getChildAt(0)).getChildAt(tabIdx);
+            if(v.getVisibility() == View.VISIBLE) {
+                TabLayout.Tab tab = tlPlants.getTabAt(tabIdx);
+                tab.select();
+                visibleTabFound = true;
+            }
+            tabIdx++;
+        }
+    }
 
     @Subscribe
     public void onSelectedPlantEvent(PlantSelectedEvent plantSelectedEvent) {
@@ -250,12 +263,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
         presenter.setTabsVisibility(plantSelectedEvent.getPlant().getId());
 
-        // Select 1st tab when a new plant is selected
-        TabLayout.Tab tab = tlPlants.getTabAt(0);
-        tab.select();
+        selectFirstVisibleTab();
 
-        // a plants has been selected, selected tab is set to a value different of NO_TABS to be
-        // able to see a plant has been selected and we have to set the tabs visible
         selectedTab = 0;
     }
 

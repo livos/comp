@@ -37,11 +37,15 @@
     <string name="title_neutral">NEUTRAL</string>
 
     <!--play store-->
-    <string name="app_google_play_store_link">"https://play.google.com/store/apps/details?id="</string>
-    <string name="app_market_link">"market://details?id="</string>
+    <string name="app_google_play_store_link">https://play.google.com/store/apps/details?id=</string>
+    <string name="app_market_link">market://details?id=</string>
 
     <!--App Message-->
     <string name="api_retry_error">Please retry!</string>
     <string name="api_default_error">Something wrong happened!</string>
     <string name="some_error">Some Error Occurred!</string>
+
+    <!--share app-->
+    <string name="share_app_message">\nLet me recommend you this application\n\n</string>
+    <string name="app_details_base_url">https://play.google.com/store/apps/details</string>
 </resources>

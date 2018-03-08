@@ -124,7 +124,9 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     @Override
     protected void setUp(View view) {
         rvPlants.setAdapter(adapter);
+
         presenter.onViewPrepared(tabIndex);
+
 
     }
 
