@@ -30,8 +30,8 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public List<PlantDefinition> getAllDefinitions() {
-        return dbHelper.getAllDefinitions();
+    public List<PlantDefinition> getAllDefinitions(String localeCode) {
+        return dbHelper.getAllDefinitions(localeCode);
     }
 
     @Override

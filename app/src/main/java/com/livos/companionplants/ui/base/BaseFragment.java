@@ -22,6 +22,7 @@ public abstract class BaseFragment extends Fragment implements MvpView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         setUp(view);
     }
 
@@ -67,6 +68,7 @@ public abstract class BaseFragment extends Fragment implements MvpView {
             this.activity = activity;
             activity.onFragmentAttached();
         }
+
     }
 
     @Override

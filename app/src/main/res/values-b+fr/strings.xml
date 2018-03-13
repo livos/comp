@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Companion plants</string>
 
@@ -6,13 +5,47 @@
     <string name="all">Toutes les plantes</string>
     <string name="hint_actv_search">Nom de la plante</string>
 
+    <!-- Toolbar -->
+    <string name= "toolbar_reload">Toutes les plantes</string>
+
     <!--Drawer-->
     <string name="open_drawer">Menu ouvert</string>
     <string name="close_drawer">Menu fermé</string>
     <string name="help">Aide</string>
     <string name="share">Partager</string>
-    <string name="rate_us">Noter sur le Playstore</string>
+    <string name="rate_us">Noter</string>
     <string name="feedback">Nous contacter</string>
     <string name="credits">Credits</string>
-    <string name="donate">Donner</string>
+    <string name="donate">Aider le projet</string>
+
+    <!--rating dialog-->
+    <string name="rating_message">Comment pourrions-nous améliorer cette application?</string>
+    <string name="rating_play_store_redirect_message_line_1">Super ! merci pour les 5 étoiles !</string>
+    <string name="rating_play_store_redirect_message_line_2">Faites découvrir cette application à d\'autres personnes</string>
+    <string name="rating_play_store_text">Noter sur le Play Store</string>
+    <string name="rating_not_provided_error">Merci de noter cette application.</string>
+    <string name="rating_thanks">Merci!</string>
+
+    <!--button-->
+    <string name="later">Plus tard</string>
+    <string name="submit">Valider</string>
+
+    <!--sections-->
+    <string name="title_helps">AIDE</string>
+    <string name="title_helped_by">AIDE PAR</string>
+    <string name="title_avoid">EVITER</string>
+    <string name="title_neutral">NEUTRE</string>
+
+    <!--play store-->
+    <string name="app_google_play_store_link">https://play.google.com/store/apps/details?id=</string>
+    <string name="app_market_link">market://details?id=</string>
+
+    <!--App Message-->
+    <string name="api_retry_error">Merci de réessayer!</string>
+    <string name="api_default_error">Une erreur est survenue!</string>
+    <string name="some_error">Une erreur est survenue!</string>
+
+    <!--share app-->
+    <string name="share_app_message">\nCompanion Plants est une super application, je vous invite à la tester !\n\n</string>
+    <string name="app_details_base_url">https://play.google.com/store/apps/details</string>
 </resources>

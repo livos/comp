@@ -10,7 +10,7 @@ import com.livos.companionplants.ui.events.PlantSelectedEvent;
 public interface SearchMvpPresenter <V extends SearchMvpView>
         extends MvpPresenter<V> {
 
-        void onViewPrepared();
+        void onViewPrepared(String localeCode);
         void onListPlantClicked(PlantDefinition plantDefinition);
         void onSelectedPlantChanged(PlantSelectedEvent plantSelectedEvent);
         void onSaveInstanceState(Bundle outState);

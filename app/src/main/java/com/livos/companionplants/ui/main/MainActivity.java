@@ -51,6 +51,7 @@ import static com.livos.companionplants.utils.AppUtils.rateApplication;
 public class MainActivity extends BaseActivity implements MainMvpView {
     private static final int NO_TABS = -1;
     private int selectedTab = NO_TABS;
+    private String localeCode;
 
     private ActionBarDrawerToggle drawerToggle;
 
@@ -95,6 +96,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     protected void setUp() {
+
+
         //== Drawer ==
         setSupportActionBar(toolbar);
         drawerToggle = new ActionBarDrawerToggle(

@@ -35,8 +35,13 @@ public class AppDbHelper implements DbHelper {
     }
 
     @Override
-    public List<PlantDefinition> getAllDefinitions() {
-        List<PlantDefinition> definitions = realm.copyFromRealm(realm.where(PlantDefinition.class).findAll());
+    public List<PlantDefinition> getAllDefinitions(String localeCode) {
+        List<PlantDefinition> definitions = realm.copyFromRealm(realm.where(PlantDefinition.class)
+                .equalTo("language",localeCode)
+                .findAll());
+        List<PlantDefinition> def = realm.copyFromRealm(realm.where(PlantDefinition.class)
+                .findAll());
+
         return definitions;
     }
 

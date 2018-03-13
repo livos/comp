@@ -25,8 +25,8 @@ public class SearchPresenter <V extends SearchMvpView> extends BasePresenter<V>
     }
 
     @Override
-    public void onViewPrepared() {
-        List<PlantDefinition> plantsDefinitions = getDataManager().getAllDefinitions();
+    public void onViewPrepared(String localeCode) {
+        List<PlantDefinition> plantsDefinitions = getDataManager().getAllDefinitions(localeCode);
         getMvpView().loadDefinitions(plantsDefinitions);
     }
 
@@ -35,7 +35,7 @@ public class SearchPresenter <V extends SearchMvpView> extends BasePresenter<V>
      * @param plantDefinition Selected plant name
      */
     public void onListPlantClicked(PlantDefinition plantDefinition) {
-        selectedPlant = getDataManager().getPlantById(plantDefinition.getId());
+        selectedPlant = getDataManager().getPlantById(plantDefinition.getPlant().getId());
         getDataManager().setSelectedPlant(selectedPlant);
         getMvpView().onSelectedPlantChanged(selectedPlant);
 

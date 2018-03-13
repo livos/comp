@@ -10,8 +10,8 @@ android {
         applicationId "com.livos.companionplants"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.compileSdkVersion
-        versionCode 12
-        versionName "3.0"
+        versionCode 13
+        versionName "4.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 

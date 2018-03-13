@@ -4,6 +4,7 @@ package com.livos.companionplants;
 import android.app.Application;
 
 import com.livos.companionplants.data.DataManager;
+import com.livos.companionplants.data.local.prefs.PreferencesHelper;
 import com.livos.companionplants.di.component.ApplicationComponent;
 import com.livos.companionplants.di.component.DaggerApplicationComponent;
 import com.livos.companionplants.di.module.ApplicationModule;
@@ -19,6 +20,7 @@ public class PlantsApp  extends Application {
     @Inject
     DataManager dataManager;
 
+
     @Inject
     CalligraphyConfig calligraphyConfig;
 
@@ -27,6 +29,7 @@ public class PlantsApp  extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
 
         Realm.init(this);
 

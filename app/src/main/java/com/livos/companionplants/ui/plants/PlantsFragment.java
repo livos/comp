@@ -34,6 +34,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     private int tabIndex = -1;
     private long selectedPlantId = 0;
     private PlantsRecyclerViewAdapter adapter;
+    private String localeCode;
 
     List<AssociatedPlant> plants;
     PlantSelectedEvent plantSelectedEvent;
@@ -49,8 +50,6 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     @BindView(R.id.ll_tabs)
     LinearLayout llTabs;
 
-    @BindView(R.id.fl_plants_empty_view)
-    FrameLayout flPlantsEmptyView;
 
 
     public static PlantsFragment newInstance(int tabIndex) {
@@ -96,6 +95,8 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
             setUnBinder(ButterKnife.bind(this, view));
             presenter.onAttach(this);
         }
+        localeCode = getResources().getConfiguration().locale.getLanguage();
+
 
         readBundle(getArguments());
 
@@ -139,7 +140,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
 
             this.plants = plants;
 
-            adapter.updateAssociatedPlants(plants);
+            adapter.updateAssociatedPlants(plants, localeCode);
             adapter.notifyDataSetChanged();
         }
 

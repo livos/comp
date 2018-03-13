@@ -36,6 +36,7 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
     public static final String TAG = "SearchFragment";
 
     private PlantSearchAdapter plantSearchAdapter;
+    private String localeCode;
 
     @Inject
     SearchMvpPresenter<SearchMvpView> presenter;
@@ -81,6 +82,7 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
             setUnBinder(ButterKnife.bind(this, view));
             presenter.onAttach(this);
         }
+        localeCode = getResources().getConfiguration().locale.getLanguage();
         return view;
     }
 
@@ -102,7 +104,7 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
             }
         });
 
-        presenter.onViewPrepared();
+        presenter.onViewPrepared(localeCode);
     }
 
 
@@ -133,7 +135,19 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
         int resourceId = resources.getIdentifier(selectedPlant.getPictures().get(0).getPicture(), "drawable",
                 getContext().getPackageName());
 
-        String currentPlantName = selectedPlant.getDefinitions().get(0).getDefinition();
+        int localeIdx = 0;
+        switch (localeCode) {
+            case "fr":
+                localeIdx = 1;
+                break;
+            case "es":
+                localeIdx = 2;
+                break;
+            default:
+                localeIdx = 0;
+        }
+
+        String currentPlantName = selectedPlant.getDefinitions().get(localeIdx).getDefinition();
         actvSearch.setText(currentPlantName);
         civPlant.setImageDrawable( resources.getDrawable(resourceId));
         actvSearch.setSelection(currentPlantName.length()); // Put the cursor at the end of the name of the new searched plant

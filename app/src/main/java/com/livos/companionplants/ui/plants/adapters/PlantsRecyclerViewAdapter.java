@@ -17,14 +17,16 @@ import java.util.List;
 public class PlantsRecyclerViewAdapter extends RecyclerView.Adapter<PlantsRecyclerViewHolder>  {
     private Context context;
     private List<AssociatedPlant> plants;
+    private String localeCode;
 
     public PlantsRecyclerViewAdapter(Context context) {
         this.context = context;
     }
 
 
-    public void updateAssociatedPlants(List<AssociatedPlant> plants) {
+    public void updateAssociatedPlants(List<AssociatedPlant> plants, String localCode) {
         this.plants = plants;
+        this.localeCode = localCode;
 
     }
 
@@ -36,10 +38,22 @@ public class PlantsRecyclerViewAdapter extends RecyclerView.Adapter<PlantsRecycl
 
     @Override
     public void onBindViewHolder(PlantsRecyclerViewHolder holder, int position) {
+        int localeIdx = 0;
+        switch (localeCode) {
+            case "fr":
+                localeIdx = 1;
+                break;
+            case "es":
+                localeIdx = 2;
+                break;
+            default:
+                localeIdx = 0;
+        }
+
         int resourceId = context.getResources().getIdentifier(plants.get(position).getPlant().getPictures().get(0).getPicture(),"drawable", context.getPackageName());
 
         holder.getIvPlant().setImageResource(resourceId);
-        holder.getTvPlantName().setText(plants.get(position).getPlant().getDefinitions().get(0).getDefinition());
+        holder.getTvPlantName().setText(plants.get(position).getPlant().getDefinitions().get(localeIdx).getDefinition());
 
         holder.getIvPlant().setTag(plants.get(position));
         holder.getTvPlantName().setBackgroundColor(getFlagColor(0L)); // Default flag is neutral

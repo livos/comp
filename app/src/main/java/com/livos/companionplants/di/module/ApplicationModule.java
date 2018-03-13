@@ -80,4 +80,6 @@ public class ApplicationModule {
                 .setFontAttrId(R.attr.fontPath)
                 .build();
     }
+
+
 }

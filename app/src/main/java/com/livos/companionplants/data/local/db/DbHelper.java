@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface DbHelper {
     List<AssociatedPlant> getAllPlants();
-    List<PlantDefinition> getAllDefinitions();
+    List<PlantDefinition> getAllDefinitions(String localeCode);
 
     List<AssociatedPlant> getAssociatedPlants(long plantId);
     List<AssociatedPlant> getAssociatedPlantsHelps(long plantId);
