@@ -1,3 +1,3 @@
-# companionplants
+# comp
 
 Android application
