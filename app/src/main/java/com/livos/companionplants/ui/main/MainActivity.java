@@ -4,6 +4,7 @@ package com.livos.companionplants.ui.main;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -286,6 +287,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         }
     }
 
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -305,11 +308,16 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     /**
      * Toggle single tab visibility
      * @param taIdx
-     * @param visibility
+     * @param enabled
      */
     @Override
-    public void toggleTab(int taIdx, int visibility) {
-        ((ViewGroup) tlPlants.getChildAt(0)).getChildAt(taIdx).setVisibility(visibility);
+    public void toggleTab(int taIdx, boolean enabled) {
+        ((ViewGroup) tlPlants.getChildAt(0)).getChildAt(taIdx).setEnabled(enabled);//setVisibility(visibility);
+        if(!enabled) {
+            ((ViewGroup) tlPlants.getChildAt(0)).getChildAt(taIdx).setBackgroundColor(getResources().getColor(R.color.grey_green));
+        } else {
+            ((ViewGroup) tlPlants.getChildAt(0)).getChildAt(taIdx).setBackgroundColor(getResources().getColor(R.color.green));
+        }
     }
 
     /**

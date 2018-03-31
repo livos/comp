@@ -6,7 +6,7 @@ import com.livos.companionplants.ui.base.MvpView;
 
 public interface MainMvpView extends MvpView {
     //void toggleTabsVisibility(Plant plant);
-    void toggleTab(int tabIdx, int visibility);
+    void toggleTab(int tabIdx, boolean enabled);
     void showCredits();
     void shareApp();
     void closeNavigationDrawer();

@@ -42,31 +42,45 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
 
     @Override
     public void setTabsVisibility(long plantId) {
-        int helpsSize = getDataManager().getAssociatedPlantsHelps(plantId).size();
-        int helpedBySize = getDataManager().getAssociatedPlantsHelpedBy(plantId).size();
-        int avoidSize = getDataManager().getAssociatedPlantsAvoid(plantId).size();
-        int neutralSize = getDataManager().getAssociatedPlantsNeutral(plantId).size();
 
-        if(helpsSize == 0) {
-            getMvpView().toggleTab(0, View.GONE);
-        } else {
-            getMvpView().toggleTab(0, View.VISIBLE);
+        int[] tabs  = {
+                getDataManager().getAssociatedPlantsHelps(plantId).size(),
+                getDataManager().getAssociatedPlantsHelpedBy(plantId).size(),
+                getDataManager().getAssociatedPlantsAvoid(plantId).size(),
+                getDataManager().getAssociatedPlantsNeutral(plantId).size()
+        };
+//        int helpsSize =
+//        int helpedBySize =
+//        int avoidSize =
+//        int neutralSize = ;
+
+        int tabIdx = 0;
+        for(int tabNbElement : tabs) {
+            getMvpView().toggleTab(tabIdx,tabNbElement != 0);
+
+            tabIdx++;
         }
-        if(helpedBySize == 0) {
-            getMvpView().toggleTab(1, View.GONE);
-        } else {
-            getMvpView().toggleTab(1, View.VISIBLE);
-        }
-        if(avoidSize == 0) {
-            getMvpView().toggleTab(2, View.GONE);
-        } else {
-            getMvpView().toggleTab(2, View.VISIBLE);
-        }
-        if(neutralSize == 0) {
-            getMvpView().toggleTab(3, View.GONE);
-        } else {
-            getMvpView().toggleTab(3, View.VISIBLE);
-        }
+
+//        if(helpsSize == 0) {
+//            getMvpView().toggleTab(0, View.GONE);
+//        } else {
+//            getMvpView().toggleTab(0, View.VISIBLE);
+//        }
+//        if(helpedBySize == 0) {
+//            getMvpView().toggleTab(1, View.GONE);
+//        } else {
+//            getMvpView().toggleTab(1, View.VISIBLE);
+//        }
+//        if(avoidSize == 0) {
+//            getMvpView().toggleTab(2, View.GONE);
+//        } else {
+//            getMvpView().toggleTab(2, View.VISIBLE);
+//        }
+//        if(neutralSize == 0) {
+//            getMvpView().toggleTab(3, View.GONE);
+//        } else {
+//            getMvpView().toggleTab(3, View.VISIBLE);
+//        }
 
     }
 
