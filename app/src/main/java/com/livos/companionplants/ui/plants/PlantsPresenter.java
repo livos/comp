@@ -32,11 +32,13 @@ public class PlantsPresenter<V extends PlantsMvpView> extends BasePresenter<V>
 
         // We only fill the tabs recyclerview if a plant has been selected or we are on the default sceen with all
         // plants and no tabs (tabindex = -1)
-        if(selectedPlant != null || (selectedPlant == null && tabIndex == -1)) {
-            List<AssociatedPlant> plants = getAssociatedplants(selectedPlant, tabIndex);
+        List<AssociatedPlant> plants = null;
 
-            getMvpView().loadPlants(plants);
+        if(selectedPlant != null || (selectedPlant == null && tabIndex == -1)) {
+            plants = getAssociatedplants(selectedPlant, tabIndex);
         }
+
+        getMvpView().loadPlants(plants);
 
 
     }

@@ -19,6 +19,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -129,7 +130,11 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         PlantsPagerAdapter plantsPagerAdapter = new PlantsPagerAdapter(getSupportFragmentManager(), this);
         vpPlants.setAdapter(plantsPagerAdapter);
 
+        vpPlants.setOffscreenPageLimit(3);
+
         tlPlants.setupWithViewPager(vpPlants);
+
+
 
     }
 

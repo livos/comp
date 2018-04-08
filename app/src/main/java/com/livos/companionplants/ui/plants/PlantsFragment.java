@@ -112,7 +112,7 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
     }
 
     @Subscribe
-    public void onPlantSelectedEvent(PlantSelectedEvent plantSelectedEvent) {
+    public void onSelectedPlantEvent(PlantSelectedEvent plantSelectedEvent) {
         this.plantSelectedEvent = plantSelectedEvent;
         this.plantSelectedEvent.setTabIdx(tabIndex);
 
@@ -140,6 +140,9 @@ public class PlantsFragment extends BaseFragment implements PlantsMvpView {
 
             adapter.updateAssociatedPlants(plants, localeCode);
             adapter.notifyDataSetChanged();
+            rvPlants.setVisibility(View.VISIBLE);
+        } else {
+            rvPlants.setVisibility(View.GONE);
         }
 
 
