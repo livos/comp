@@ -131,33 +131,36 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
      */
     @Override
     public void setCurrentPlant(Plant selectedPlant) {
-        Resources resources = getContext().getResources();
-        int resourceId = resources.getIdentifier(selectedPlant.getPictures().get(0).getPicture(), "drawable",
-                getContext().getPackageName());
+        //if(selectedPlant != null) {
+            Resources resources = getContext().getResources();
+            int resourceId = resources.getIdentifier(selectedPlant.getPictures().get(0).getPicture(), "drawable",
+                    getContext().getPackageName());
 
-        int localeIdx = 0;
-        switch (localeCode) {
-            case "fr":
-                localeIdx = 1;
-                break;
-            case "es":
-                localeIdx = 2;
-                break;
-            default:
-                localeIdx = 0;
-        }
+            int localeIdx = 0;
+            switch (localeCode) {
+                case "fr":
+                    localeIdx = 1;
+                    break;
+                case "es":
+                    localeIdx = 2;
+                    break;
+                default:
+                    localeIdx = 0;
+            }
 
-        String currentPlantName = selectedPlant.getDefinitions().get(localeIdx).getDefinition();
-        actvSearch.setText(currentPlantName);
-        civPlant.setImageDrawable( resources.getDrawable(resourceId));
-        actvSearch.setSelection(currentPlantName.length()); // Put the cursor at the end of the name of the new searched plant
-        actvSearch.dismissDropDown();
+            String currentPlantName = selectedPlant.getDefinitions().get(localeIdx).getDefinition();
+            actvSearch.setText(currentPlantName);
+            civPlant.setImageDrawable(resources.getDrawable(resourceId));
+            actvSearch.setSelection(currentPlantName.length()); // Put the cursor at the end of the name of the new searched plant
+            actvSearch.dismissDropDown();
+//        } else {
+//            actvSearch.setText("");
+//        }
     }
 
 
     @Subscribe
     public void onPlantSelectedEvent(PlantSelectedEvent plantSelectedEvent) {
-
         presenter.onSelectedPlantChanged(plantSelectedEvent);
     }
 

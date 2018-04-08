@@ -32,6 +32,7 @@ import com.livos.companionplants.di.component.ActivityComponent;
 import com.livos.companionplants.ui.base.BaseActivity;
 import com.livos.companionplants.ui.events.EmptyTabEvent;
 import com.livos.companionplants.ui.events.PlantSelectedEvent;
+import com.livos.companionplants.ui.events.PlantSelectedEventImpl;
 import com.livos.companionplants.ui.main.adapters.PlantsPagerAdapter;
 import com.livos.companionplants.ui.plants.PlantsFragment;
 import com.livos.companionplants.ui.search.SearchFragment;
@@ -247,29 +248,39 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         }
     }
 
-    private void selectFirstVisibleTab() {
-        boolean visibleTabFound = false;
-        int tabIdx = 0;
-        while(!visibleTabFound) {
-            View v = ((ViewGroup) tlPlants.getChildAt(0)).getChildAt(tabIdx);
-            if(v.getVisibility() == View.VISIBLE) {
+    private void selectFirstEnabledTab() {
+        for(int tabIdx = 0; tabIdx < 4; tabIdx++ ) {
+            if (((ViewGroup) tlPlants.getChildAt(0)).getChildAt(tabIdx).isEnabled()) {
                 TabLayout.Tab tab = tlPlants.getTabAt(tabIdx);
                 tab.select();
-                visibleTabFound = true;
+                break;
             }
-            tabIdx++;
         }
+
+//        boolean visibleTabFound = false;
+//        int tabIdx = 0;
+//        while(!visibleTabFound) {
+//            View v = ((ViewGroup) tlPlants.getChildAt(0)).getChildAt(tabIdx);
+//            if(v.getVisibility() == View.VISIBLE) {
+//                TabLayout.Tab tab = tlPlants.getTabAt(tabIdx);
+//                tab.select();
+//                visibleTabFound = true;
+//            }
+//            tabIdx++;
+//        }
     }
 
     @Subscribe
     public void onSelectedPlantEvent(PlantSelectedEvent plantSelectedEvent) {
-        toggleTabs(View.VISIBLE);
+        //if(plantSelectedEvent.getPlant() != null) {
+            toggleTabs(View.VISIBLE);
 
-        presenter.setTabsVisibility(plantSelectedEvent.getPlant().getId());
+            presenter.setTabsVisibility(plantSelectedEvent.getPlant().getId());
 
-        selectFirstVisibleTab();
+            selectFirstEnabledTab();
 
-        selectedTab = 0;
+            selectedTab = 0;
+       // }
     }
 
     /**
@@ -281,32 +292,31 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         vpPlants.setVisibility(visibility); // Show ViewPager
         if (visibility == View.VISIBLE) {
             // Hide FrameLayout with all plants (not tab and no filter applied => welcome screen)
-            flContainerPlants.setVisibility(View.GONE);
+            flContainerPlants.setVisibility(View.GONE); //LVS
         } else {
             flContainerPlants.setVisibility(View.VISIBLE);
         }
     }
 
-
-
     @Override
-    public void onStart() {
-        super.onStart();
-        if(!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this);
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
         if(EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+
+    }
+
     /**
-     * Toggle single tab visibility
+     * Toggle single tab activation
      * @param taIdx
      * @param enabled
      */

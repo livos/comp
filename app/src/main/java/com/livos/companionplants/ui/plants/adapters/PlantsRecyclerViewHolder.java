@@ -31,8 +31,6 @@ public class PlantsRecyclerViewHolder extends RecyclerView.ViewHolder implements
         PlantSelectedEvent plantSelectedEvent = new PlantSelectedEventImpl();
         plantSelectedEvent.setPlant(((AssociatedPlant)ivPlant.getTag()).getPlant());
         EventBus.getDefault().post(plantSelectedEvent);
-
-
     }
 
     public TextView getTvPlantName() {

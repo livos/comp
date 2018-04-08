@@ -49,10 +49,6 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
                 getDataManager().getAssociatedPlantsAvoid(plantId).size(),
                 getDataManager().getAssociatedPlantsNeutral(plantId).size()
         };
-//        int helpsSize =
-//        int helpedBySize =
-//        int avoidSize =
-//        int neutralSize = ;
 
         int tabIdx = 0;
         for(int tabNbElement : tabs) {
@@ -60,27 +56,6 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
 
             tabIdx++;
         }
-
-//        if(helpsSize == 0) {
-//            getMvpView().toggleTab(0, View.GONE);
-//        } else {
-//            getMvpView().toggleTab(0, View.VISIBLE);
-//        }
-//        if(helpedBySize == 0) {
-//            getMvpView().toggleTab(1, View.GONE);
-//        } else {
-//            getMvpView().toggleTab(1, View.VISIBLE);
-//        }
-//        if(avoidSize == 0) {
-//            getMvpView().toggleTab(2, View.GONE);
-//        } else {
-//            getMvpView().toggleTab(2, View.VISIBLE);
-//        }
-//        if(neutralSize == 0) {
-//            getMvpView().toggleTab(3, View.GONE);
-//        } else {
-//            getMvpView().toggleTab(3, View.VISIBLE);
-//        }
 
     }
 
@@ -96,8 +71,6 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
 
     @Override
     public void onDrawerRateUsClick() {
-
-
 
         getMvpView().closeNavigationDrawer();
         getMvpView().rateApp();

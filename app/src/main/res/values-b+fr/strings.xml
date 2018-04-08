@@ -31,10 +31,10 @@
     <string name="submit">Valider</string>
 
     <!--sections-->
-    <string name="title_helps">AIDE</string>
-    <string name="title_helped_by">AIDE PAR</string>
-    <string name="title_avoid">EVITER</string>
-    <string name="title_neutral">NEUTRE</string>
+    <string name="title_helps">Aide</string>
+    <string name="title_helped_by">Aidé par</string>
+    <string name="title_avoid">Néfaste</string>
+    <string name="title_neutral">Neutre</string>
 
     <!--play store-->
     <string name="app_google_play_store_link">https://play.google.com/store/apps/details?id=</string>
